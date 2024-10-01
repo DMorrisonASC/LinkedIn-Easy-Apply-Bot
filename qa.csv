@@ -50,3 +50,404 @@ are you comfortable commuting to this job's location?
 required
 yes
 no",Yes
+how many years of work experience do you have with programmable logic controller (plc)?,1
+how many years of work experience do you have with software engineers?,1
+"are you a us citizen or permanent resident?
+are you a us citizen or permanent resident?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you local to the shelbyville, ky (commutable distance) area?
+are you local to the shelbyville, ky (commutable distance) area?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"we expect the annual salary to be $85,000 to $90,000. is that acceptable to you?
+we expect the annual salary to be $85,000 to $90,000. is that acceptable to you?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer","60,000"
+how many years of work experience do you have with java?,2
+"how many years of work experience do you have with fast healthcare interoperability resources (fhir)?
+enter a whole number between 0 and 99",2
+"how many years of work experience do you have with hl7 standards?
+enter a whole number between 0 and 99",2
+how many years of work experience do you have with github?,2
+"how many years of work experience do you have with sql database administration?
+enter a whole number between 0 and 99",2
+how many years of work experience do you have with sql?,2
+"how many years of work experience do you have with mainframe?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with advanced metering infrastructure (ami)?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with mainframe?,6
+how many years of work experience do you have with advanced metering infrastructure (ami)?,6
+how many years of work experience do you have with fast healthcare interoperability resources (fhir)?,6
+how many years of work experience do you have with hl7 standards?,6
+how many years of work experience do you have with cobol?,6
+how many years of work experience do you have with database applications?,6
+"how many years of work experience do you have with job control language (jcl)?
+enter a whole number between 0 and 99",6
+"are you willing to undergo a background check, in accordance with local law/regulations?
+are you willing to undergo a background check, in accordance with local law/regulations?
+required
+yes
+no",yes
+"are you willing to take a drug test, in accordance with local law/regulations?
+are you willing to take a drug test, in accordance with local law/regulations?
+required
+yes
+no",yes
+"are you comfortable commuting to this job's location?
+are you comfortable commuting to this job's location?
+required
+yes
+no
+please make a selection",yes
+"are you comfortable working in an onsite setting?
+are you comfortable working in an onsite setting?
+required
+yes
+no",yes
+"have you completed the following level of education: bachelor's degree?
+have you completed the following level of education: bachelor's degree?
+required
+yes
+no",yes
+"looking for 5+ years experience as firmware engineer
+looking for 5+ years experience as firmware engineer
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+"experience in c, c++, verilog, python and any scripting language 
+experience in c, c++, verilog, python and any scripting language
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+"post-silicon experience developing firmware on real hardware is required
+post-silicon experience developing firmware on real hardware is required
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+"experience in using oscilloscopes, logic analyzers
+experience in using oscilloscopes, logic analyzers
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+"synchronization techniques (handshakes, message passing)
+synchronization techniques (handshakes, message passing)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer","60,000"
+"experience with ddr, memory controller, high-speed lpddr (memory units) is must
+experience with ddr, memory controller, high-speed lpddr (memory units) is must
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+"are you comfortable interfacing with customers?
+are you comfortable interfacing with customers?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",yes
+"do you have an active security clearance? 
+do you have an active security clearance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",yes
+how many years of work experience do you have with javascript?,6
+how many years of work experience do you have with html?,6
+"how many years of work experience do you have with regulatory reporting?
+enter a whole number between 0 and 99",6
+how many years of information technology experience do you currently have?,6
+how many years of work experience do you have with react.js?,6
+how many years of work experience do you have with node.js?,6
+how many years of work experience do you have with .net framework?,6
+"restful apis
+restful apis
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",yes
+how many years of work experience do you have with python (programming language)?,6
+how many years of work experience do you have with amazon web services (aws)?,6
+"do you live in a state within the eastern time zone?
+do you live in a state within the eastern time zone?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",yes
+"do you have 5+ years of full-stack development experience?
+do you have 5+ years of full-stack development experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",6
+how many years of work experience do you have with ios?,6
+how many years of work experience do you have with software as a service (saas)?,6
+"how many years of work experience do you have with gstreamer?
+enter a whole number between 0 and 99",1
+how many years of work experience do you have with .net core?,1
+how many years of work experience do you have with microsoft sql server?,1
+"are you able to work on a w2 contract? 
+are you able to work on a w2 contract?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you looking to work on c2c or need sponsorship? 
+are you looking to work on c2c or need sponsorship?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"can you go to office in johnston, ri on occasion? 
+can you go to office in johnston, ri on occasion?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a bachelor’s degree in computer science, engineering, information technology, or a related field?
+do you have a bachelor’s degree in computer science, engineering, information technology, or a related field?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have 5-8 experience as a data engineer or in a similar role with a focus on microsoft azure and microsoft fabric?
+do you have 5-8 experience as a data engineer or in a similar role with a focus on microsoft azure and microsoft fabric?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"do you have hands-on experience with azure data factory, azure synapse analytics, azure sql database, and other azure services?
+do you have hands-on experience with azure data factory, azure synapse analytics, azure sql database, and other azure services?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"do you have experience with data integration, etl processes, and data warehousing?
+do you have experience with data integration, etl processes, and data warehousing?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"are you familiar with data modeling and database design principles?
+are you familiar with data modeling and database design principles?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"at least 3 years of experience with hogan 
+at least 3 years of experience with hogan
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+how many years of work experience do you have with android?,1
+how many years of work experience do you have with c (programming language)?,1
+"how many years of android framework experience?
+enter a decimal number larger than 0.0",1
+"how many years of can experience?
+enter a decimal number larger than 0.0",1
+"how many years of android hal experience?
+enter a decimal number larger than 0.0",1
+"how many years of linux kernel experience?
+enter a decimal number larger than 0.0",1
+"how many years of power moding experience?
+enter a decimal number larger than 0.0",1
+"how many years designing highly complex automotive head units using linux / android or qnx operating systems?
+enter a decimal number larger than 0.0",1
+"how many years of virtualization technologies, hypervisors?
+enter a decimal number larger than 0.0",1
+"do you have a valid driver's license?
+do you have a valid driver's license?
+required
+yes
+no",Yes
+"are you comfortable working in a remote setting?
+are you comfortable working in a remote setting?
+required
+yes
+no",Yes
+how many years of work experience do you have with etl tools?,1
+"what is your level of proficiency in english?
+what is your level of proficiency in english?
+required
+       select an option
+       none
+       conversational
+       professional
+       native or bilingual
+  ",user provided
+"how many years experience do you have using sql?
+enter a decimal number larger than 0.0",1
+"are you a us citizen?
+are you a us citizen?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you currently reside inside the united states?
+do you currently reside inside the united states?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you a us citizen?
+are you a us citizen?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you currently reside inside the united states?
+do you currently reside inside the united states?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"what is your level of proficiency in english?
+what is your level of proficiency in english?
+required
+       select an option
+       none
+       conversational
+       professional
+       native or bilingual
+   please make a selection",user provided
+"will you now or in the future require sponsorship for employment visa status?
+will you now or in the future require sponsorship for employment visa status?
+required
+yes
+no
+please make a selection",No
+how many years of work experience do you have with mongodb?,1
+how many years of work experience do you have with microservices?,1
+"are you working with a 3rd party employer?
+are you working with a 3rd party employer?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you permanently located in the united states, and are you legally authorized to work in the u.s. without requiring sponsorship now or in the future?
+are you permanently located in the united states, and are you legally authorized to work in the u.s. without requiring sponsorship now or in the future?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"do you have at least 3 years of focused, hands-on experience working with c# and the .net framework? 
+do you have at least 3 years of focused, hands-on experience working with c# and the .net framework?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"do you have at least 3 years of focused, hands-on experience working with react or react native? 
+do you have at least 3 years of focused, hands-on experience working with react or react native?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"do you have at least 3 years of focused, hands-on experience working with react or react native? 
+do you have at least 3 years of focused, hands-on experience working with react or react native?
+required
+       select an option
+       yes
+       no
+  ",1
+"do you have at least 3 years of focused, hands-on experience working with c# and the .net framework? 
+do you have at least 3 years of focused, hands-on experience working with c# and the .net framework?
+required
+       select an option
+       yes
+       no
+  ",1
+"are you permanently located in the united states, and are you legally authorized to work in the u.s. without requiring sponsorship now or in the future?
+are you permanently located in the united states, and are you legally authorized to work in the u.s. without requiring sponsorship now or in the future?
+required
+       select an option
+       yes
+       no
+  ",No
+"are you available for permanent full time role/w2?
+are you available for permanent full time role/w2?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with capital markets?,1
+"are you open to work 2-3 days per week onsite at new york city?
+are you open to work 2-3 days per week onsite at new york city?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with l0 and l1 support for java applications?
+do you have experience with l0 and l1 support for java applications?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"are you available for permanent full time role/w2?
+are you available for permanent full time role/w2?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have experience with l0 and l1 support for java applications?
+do you have experience with l0 and l1 support for java applications?
+required
+       select an option
+       yes
+       no
+  ",1
+"are you open to work 2-3 days per week onsite at new york city?
+are you open to work 2-3 days per week onsite at new york city?
+required
+       select an option
+       yes
+       no
+  ",Yes

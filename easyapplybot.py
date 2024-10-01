@@ -114,15 +114,15 @@ class EasyApplyBot:
             "follow": (By.CSS_SELECTOR, "label[for='follow-company-checkbox']"),
             "upload": (By.NAME, "file"),
             "search": (By.CLASS_NAME, "jobs-search-results-list"),
-            "links": ("xpath", '//div[@data-job-id]'),
+            "links": (By.XPATH, '//div[@data-job-id]'),  # Corrected this line
             "fields": (By.CLASS_NAME, "jobs-easy-apply-form-section__grouping"),
-            "radio_select": (By.CSS_SELECTOR, "input[type='radio']"), #need to append [value={}].format(answer)
-            "multi_select": (By.XPATH, "//*[contains(@id, 'text-entity-list-form-component')]"),
+            "radio_select": (By.CSS_SELECTOR, "input[type='radio']"),  # You can append [value={}].format(answer) dynamically later
+            "multi_select": (By.XPATH, "//select[contains(@id, 'text-entity-list-form-component-formElement')]"),
             "text_select": (By.CLASS_NAME, "artdeco-text-input--input"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]')
-
         }
+
 
         #initialize questions and answers file
         self.qa_file = Path("qa.csv")
@@ -535,51 +535,80 @@ class EasyApplyBot:
             #raise (e)
 
         return submitted
+        
     def process_questions(self):
         time.sleep(1)
-        form = self.get_elements("fields") #self.browser.find_elements(By.CLASS_NAME, "jobs-easy-apply-form-section__grouping")
+        form = self.get_elements("fields")  # Getting form elements
         for field in form:
             question = field.text
             answer = self.ans_question(question.lower())
-            #radio button
-            if self.is_present(self.locator["radio_select"]):
+
+            # Check if input type is radio button
+            if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:  # For yes/no or 1/0 type answers
                 try:
-                    input = field.find_element(By.CSS_SELECTOR, "input[type='radio'][value={}]".format(answer))
-                    input.execute_script("arguments[0].click();", input)
+                    input = field.find_element(By.CSS_SELECTOR, "input[type='radio'][value='{}']".format(answer))
+                    self.browser.execute_script("arguments[0].click();", input)
                 except Exception as e:
-                    log.error(e)
+                    log.error(f"Radio button error: {e}, selecting a random choice")
+                    try:
+                        # Randomly select a radio button if there is an error
+                        radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
+                        random_choice = random.choice(radio_buttons)
+                        self.browser.execute_script("arguments[0].click();", random_choice)
+                        log.info(f"Random choice selected: {random_choice.get_attribute('value')}")
+                    except Exception as fallback_error:
+                        log.error(f"Failed to select random radio button: {fallback_error}")
                     continue
-            #multi select
+
+            # Multi-select case
             elif self.is_present(self.locator["multi_select"]):
                 try:
-                    input = field.find_element(self.locator["multi_select"])
+                    input = field.find_element(self.locator["multi_select"])  # Ensure locator is valid and string-based
                     input.send_keys(answer)
                 except Exception as e:
-                    log.error(e)
+                    log.error(f"Multi-select error: {e}, selecting a random choice")
+                    try:
+                        # Randomly select a value from available options
+                        multi_select_options = field.find_elements(By.TAG_NAME, "option")  # Assuming multi-select has <option> tags
+                        if multi_select_options:
+                            random_choice = random.choice(multi_select_options)
+                            random_choice.click()
+                            log.info(f"Random multi-select option chosen: {random_choice.text}")
+                        else:
+                            log.error("No multi-select options found")
+                    except Exception as fallback_error:
+                        log.error(f"Failed to select random multi-select option: {fallback_error}")
                     continue
-            # text box
+                
+            # Handle text input fields
             elif self.is_present(self.locator["text_select"]):
                 try:
                     input = field.find_element(self.locator["text_select"])
                     input.send_keys(answer)
                 except Exception as e:
-                    log.error(e)
+                    log.error(f"Text field error: {e}")
                     continue
 
-            elif self.is_present(self.locator["text_select"]):
-               pass
-
-            if "Yes" or "No" in answer: #radio button
-                try: #debug this
-                    input = form.find_element(By.CSS_SELECTOR, "input[type='radio'][value={}]".format(answer))
-                    form.execute_script("arguments[0].click();", input)
-                except:
-                    pass
-
+            # Handle custom Yes/No answers with radio buttons
+            elif answer in ["yes", "no"]:
+                try:
+                    input = field.find_element(By.CSS_SELECTOR, "input[type='radio'][value='{}']".format(answer))
+                    self.browser.execute_script("arguments[0].click();", input)
+                except Exception as e:
+                    log.error(f"Yes/No radio button error: {e}, selecting a random choice")
+                    try:
+                        # Randomly select a Yes/No radio button
+                        radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
+                        random_choice = random.choice(radio_buttons)
+                        self.browser.execute_script("arguments[0].click();", random_choice)
+                        log.info(f"Random Yes/No choice selected: {random_choice.get_attribute('value')}")
+                    except Exception as fallback_error:
+                        log.error(f"Failed to select random Yes/No radio button: {fallback_error}")
+                    continue
 
             else:
-                input = form.find_element(By.CLASS_NAME, "artdeco-text-input--input")
-                input.send_keys(answer)
+                log.info(f"Unable to determine field type for question: {question}, moving to next field.")
+
 
     def ans_question(self, question): #refactor this to an ans.yaml file
         answer = None
@@ -589,6 +618,10 @@ class EasyApplyBot:
             answer = "1"
         elif "sponsor" in question:
             answer = "No"
+        elif "English" in question:
+            answer = "Yes"
+        elif "currently reside" in question:
+            answer = "Yes"
         elif 'do you ' in question:
             answer = "Yes"
         elif "have you " in question:
@@ -604,9 +637,9 @@ class EasyApplyBot:
         elif "gender" in question:
             answer = "Male"
         elif "race" in question:
-            answer = "Wish not to answer"
+            answer = "white"
         elif "lgbtq" in question:
-            answer = "Wish not to answer"
+            answer = "No"
         elif "ethnicity" in question:
             answer = "Wish not to answer"
         elif "nationality" in question:
@@ -722,5 +755,3 @@ if __name__ == '__main__':
                        experience_level=parameters.get('experience_level', [])
                        )
     bot.start_apply(positions, locations)
-
-
