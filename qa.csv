@@ -451,3 +451,79 @@ required
        yes
        no
   ",Yes
+"how many years of work experience do you have with actimize?
+enter a whole number between 0 and 99",1
+"how many years of work experience do you have with mobile application development?
+enter a whole number between 0 and 99",1
+how many years of work experience do you have with react native?,1
+"how many years of experience do you have as a full-time software developer / engineer?
+enter a decimal number larger than 0.0",1
+"this is a permanent/direct hire w-2 position that is only open to us citizens & gc permanent residents that are available to work via w-2 immediately upon start date. is this a dealbreaker?
+this is a permanent/direct hire w-2 position that is only open to us citizens & gc permanent residents that are available to work via w-2 immediately upon start date. is this a dealbreaker?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",user provided
+"through your recent work, have you been working in frontend heavy, react development? 
+through your recent work, have you been working in frontend heavy, react development?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have strong experience in all of the following: java/spring, cloud, and api integrations? 
+do you have strong experience in all of the following: java/spring, cloud, and api integrations?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"this is a permanent/direct hire w-2 position that is only open to us citizens & gc permanent residents that are available to work via w-2 immediately upon start date. is this a dealbreaker?
+this is a permanent/direct hire w-2 position that is only open to us citizens & gc permanent residents that are available to work via w-2 immediately upon start date. is this a dealbreaker?
+required
+       select an option
+       yes
+       no
+  ",user provided
+"through your recent work, have you been working in frontend heavy, react development? 
+through your recent work, have you been working in frontend heavy, react development?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have strong experience in all of the following: java/spring, cloud, and api integrations? 
+do you have strong experience in all of the following: java/spring, cloud, and api integrations?
+required
+       select an option
+       yes
+       no
+  ",1
+how many years of work experience do you have with web development?,1
+how many years of work experience do you have with linux?,1
+"confirm that you understand this is a contract position and not a staff permanent role?
+confirm that you understand this is a contract position and not a staff permanent role?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",user provided
+"confirm that you understand this is a contract position and not a staff permanent role?
+confirm that you understand this is a contract position and not a staff permanent role?
+required
+       select an option
+       yes
+       no
+  ",user provided
+"how many years of work experience do you have with aws lambda?
+enter a whole number between 0 and 99",1
+"how many years of work experience do you have with git?
+enter a whole number between 0 and 99",1
+how many years of work experience do you have with vue.js?,1
+"how many years of work experience do you have with sharepoint?
+enter a whole number between 0 and 99",1
+how many years of work experience do you have with visual studio?,1
+how many years of work experience do you have with windows server?,1
+"how many years of work experience do you have with windows?
+enter a whole number between 0 and 99",1

@@ -118,7 +118,7 @@ class EasyApplyBot:
             "fields": (By.CLASS_NAME, "jobs-easy-apply-form-section__grouping"),
             "radio_select": (By.CSS_SELECTOR, "input[type='radio']"),  # You can append [value={}].format(answer) dynamically later
             "multi_select": (By.XPATH, "//select[contains(@id, 'text-entity-list-form-component-formElement')]"),
-            "text_select": (By.CLASS_NAME, "artdeco-text-input--input"),
+            "text_select": (By.XPATH, "//input[@class='artdeco-text-input--input' and @required='']"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]')
         }
@@ -527,6 +527,7 @@ class EasyApplyBot:
                     for element in elements:
                         button = self.wait.until(EC.element_to_be_clickable(element))
                         button.click()
+                # loop += 1
 
         except Exception as e:
             log.error(e)
@@ -620,6 +621,8 @@ class EasyApplyBot:
             answer = "No"
         elif "English" in question:
             answer = "Yes"
+        elif "proficiency in English" in question:
+            answer = "Native"
         elif "currently reside" in question:
             answer = "Yes"
         elif 'do you ' in question:
