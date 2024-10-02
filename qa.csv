@@ -693,3 +693,86 @@ how many years of full stack software development do you have?,6
 how many years of work experience do you have with microsoft azure?,6
 how many years of work experience do you have with integration platform as a service (ipaas)?,6
 how many years of work experience do you have with kubernetes?,6
+"how many years of work experience do you have with stk?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with php?,6
+how many years of work experience do you have with magento?,6
+"how many years of work experience do you have with mulesoft anypoint platform?
+enter a whole number between 0 and 99",6
+"are you h1b holder?
+are you h1b holder?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you h1b holder?
+are you h1b holder?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you comfortable commuting to this job's location?
+are you comfortable commuting to this job's location?
+required
+yes
+no",Yes
+how many years of work experience do you have with servicenow?,6
+"how many years of work experience do you have with hr service delivery?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with rest apis?,6
+how many years of work experience do you have with hr service delivery?,6
+"how many years of work experience do you have with rest apis?
+enter a whole number between 0 and 99",6
+"do you have 5-8 experience as a data engineer or in a similar role with a focus on microsoft azure and microsoft fabric?
+do you have 5-8 experience as a data engineer or in a similar role with a focus on microsoft azure and microsoft fabric?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have hands-on experience with azure data factory, azure synapse analytics, azure sql database, and other azure services?
+do you have hands-on experience with azure data factory, azure synapse analytics, azure sql database, and other azure services?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have experience with data integration, etl processes, and data warehousing?
+do you have experience with data integration, etl processes, and data warehousing?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you familiar with data modeling and database design principles?
+are you familiar with data modeling and database design principles?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have a bachelor’s degree in computer science, engineering, information technology, or a related field?
+do you have a bachelor’s degree in computer science, engineering, information technology, or a related field?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"will you now or in the future require sponsorship for employment visa status?
+will you now or in the future require sponsorship for employment visa status?
+required
+yes
+no",No
+"how many years of work experience do you have with react.js?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with do-178b?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with embedded software?,6
+"how many years of work experience do you have with flight management systems?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with do-178b?,6
+how many years of work experience do you have with mysql?,6
+"how many years of work experience do you have with api development?
+enter a whole number between 0 and 99",6

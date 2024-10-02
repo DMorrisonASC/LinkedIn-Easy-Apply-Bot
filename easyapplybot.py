@@ -117,9 +117,9 @@ class EasyApplyBot:
             "links": (By.XPATH, '//div[@data-job-id]'),  # Corrected this line
             "fields": (By.CLASS_NAME, "jobs-easy-apply-form-section__grouping"),
             "radio_select": (By.CSS_SELECTOR, "input[type='radio']"),  # You can append [value={}].format(answer) dynamically later
-            "multi_select": (By.XPATH, "//select[contains(@id, 'text-entity-list-form-component-formElement')]"),
-            "text_select": (By.XPATH, "//input[@class='artdeco-text-input--input' and @required='']"),
-            "text_select2": (By.XPATH, "//input[contains(@class, 'artdeco-text-input--input') and @required='']"),
+            "multi_select": (By.XPATH, "//select[starts-with(@id, 'text-entity-list-form')]"),
+            "text_select": (By.XPATH, "//input[contains(normalize-space(@class), ' artdeco-text-input--input') and @required]"),
+            "text_select2": (By.XPATH, "//input[contains(normalize-space(@class), 'artdeco-text-input--input') and @required]"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
         }
@@ -444,7 +444,7 @@ class EasyApplyBot:
             submitted = False
             loop = 0
             while loop < 2:
-                time.sleep(1)
+                time.sleep(2)
                 # Upload resume
                 if is_present(upload_resume_locator):
                     #upload_locator = self.browser.find_element(By.NAME, "file")
@@ -464,7 +464,7 @@ class EasyApplyBot:
                     cv_locator.send_keys(cv)
 
                     #time.sleep(random.uniform(4.5, 6.5))
-                elif len(self.get_elements("follow")) > 0:
+                if len(self.get_elements("follow")) > 0:
                     elements = self.get_elements("follow")
                     for element in elements:
                         button = self.wait.until(EC.element_to_be_clickable(element))
@@ -480,16 +480,19 @@ class EasyApplyBot:
                         break
 
                 elif len(self.get_elements("error")) > 0:
+
                     elements = self.get_elements("error")
+                    print("Length", len(self.get_elements("error")))
+                    
                     if "application was sent" in self.browser.page_source:
                         log.info("Application Submitted")
                         submitted = True
                         break
-                    elif len(elements) > 0:
+
+                    else:
                         while len(elements) > 0:
                             log.info("Please answer the questions, waiting 5 seconds...")
                             time.sleep(5)
-                            elements = self.get_elements("error")
 
                             for element in elements:
                                 self.process_questions()
@@ -502,14 +505,8 @@ class EasyApplyBot:
                                 log.info("Skipping application")
                                 submitted = False
                                 break
-                        continue
-                        #add explicit wait
-                    
-                    else:
-                        log.info("Application not submitted")
-                        time.sleep(2)
-                        break
-                    # self.process_questions()
+
+                            elements = self.get_elements("error")
 
                 elif len(self.get_elements("next")) > 0:
                     elements = self.get_elements("next")
@@ -523,11 +520,11 @@ class EasyApplyBot:
                         button = self.wait.until(EC.element_to_be_clickable(element))
                         button.click()
 
-                elif len(self.get_elements("follow")) > 0:
-                    elements = self.get_elements("follow")
-                    for element in elements:
-                        button = self.wait.until(EC.element_to_be_clickable(element))
-                        button.click()
+                # elif len(self.get_elements("follow")) > 0:
+                #     elements = self.get_elements("follow")
+                #     for element in elements:
+                #         button = self.wait.until(EC.element_to_be_clickable(element))
+                #         button.click()
                 # loop += 1
 
         except Exception as e:
@@ -539,8 +536,9 @@ class EasyApplyBot:
         return submitted
         
     def process_questions(self):
-        time.sleep(1)
+        time.sleep(2)
         form = self.get_elements("fields")  # Getting form elements
+        print(form)
         for field in form:
             question = field.text
             answer = self.ans_question(question.lower())
@@ -585,7 +583,8 @@ class EasyApplyBot:
             # Handle text input fields
             elif self.is_present(self.locator["text_select"]):
                 try:
-                    input = field.find_element(self.locator["text_select"])
+                    input = field.find_element(*self.locator["text_select"])
+                    print(self.locator["text_select"])
                     input.clear()
                     input.send_keys(answer)
                 except Exception as e:
@@ -595,7 +594,7 @@ class EasyApplyBot:
             # Handle text input fields
             elif self.is_present(self.locator["text_select2"]):
                 try:
-                    input = field.find_element(self.locator["text_select2"])
+                    input = field.find_element(*self.locator["text_select2"])
                     input.clear()
                     input.send_keys(answer)
                 except Exception as e:
