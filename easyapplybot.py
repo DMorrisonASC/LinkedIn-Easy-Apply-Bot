@@ -119,8 +119,9 @@ class EasyApplyBot:
             "radio_select": (By.CSS_SELECTOR, "input[type='radio']"),  # You can append [value={}].format(answer) dynamically later
             "multi_select": (By.XPATH, "//select[contains(@id, 'text-entity-list-form-component-formElement')]"),
             "text_select": (By.XPATH, "//input[@class='artdeco-text-input--input' and @required='']"),
+            "text_select2": (By.XPATH, "//input[contains(@class, 'artdeco-text-input--input') and @required='']"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
-            "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]')
+            "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
         }
 
 
@@ -187,7 +188,7 @@ class EasyApplyBot:
             pw_field.send_keys(password)
             time.sleep(2)
             login_button.click()
-            time.sleep(15)
+            time.sleep(20)
             # if self.is_present(self.locator["2fa_oneClick"]):
             #     oneclick_auth = self.browser.find_element(by='id', value='reset-password-submit-button')
             #     if oneclick_auth is not None:
@@ -384,7 +385,7 @@ class EasyApplyBot:
             #     '//button[contains(@class, "jobs-apply-button")]'
             # )
             for button in buttons:
-                if "Easy Apply" in button.text:
+                if "Easy Apply" in button.text or "Continue applying" in button.text:
                     EasyApplyButton = button
                     self.wait.until(EC.element_to_be_clickable(EasyApplyButton))
                 else:
@@ -585,9 +586,20 @@ class EasyApplyBot:
             elif self.is_present(self.locator["text_select"]):
                 try:
                     input = field.find_element(self.locator["text_select"])
+                    input.clear()
                     input.send_keys(answer)
                 except Exception as e:
-                    log.error(f"Text field error: {e}")
+                    log.error(f"(process_questions(1) )Text field error: {e}")
+                    continue
+
+            # Handle text input fields
+            elif self.is_present(self.locator["text_select2"]):
+                try:
+                    input = field.find_element(self.locator["text_select2"])
+                    input.clear()
+                    input.send_keys(answer)
+                except Exception as e:
+                    log.error(f"(process_questions(2)) Text field error: {e}")
                     continue
 
             # Handle custom Yes/No answers with radio buttons
@@ -614,18 +626,18 @@ class EasyApplyBot:
     def ans_question(self, question): #refactor this to an ans.yaml file
         answer = None
         if "how many" in question:
-            answer = "1"
-        elif "experience" in question:
-            answer = "1"
+            answer = "6"
         elif "sponsor" in question:
             answer = "No"
-        elif "English" in question:
+        elif "English" in question and ("speak" in question or "communicate" in question) :
             answer = "Yes"
-        elif "proficiency in English" in question:
+        elif ("proficiency" in question or "level" in question) and "English" in question:
             answer = "Native"
         elif "currently reside" in question:
             answer = "Yes"
-        elif 'do you ' in question:
+        elif "do you" in question:
+            answer = "Yes"
+        elif "do you" in question and "experience" in question:
             answer = "Yes"
         elif "have you " in question:
             answer = "Yes"
@@ -667,7 +679,8 @@ class EasyApplyBot:
             # Append a new question-answer pair to the CSV file
             new_data = pd.DataFrame({"Question": [question], "Answer": [answer]})
             new_data.to_csv(self.qa_file, mode='a', header=False, index=False, encoding='utf-8')
-            log.info(f"Appended to QA file: '{question}' with answer: '{answer}'.")
+            # log appends to QA file
+            # log.info(f"Appended to QA file: '{question}' with answer: '{answer}'.")
 
         return answer
 

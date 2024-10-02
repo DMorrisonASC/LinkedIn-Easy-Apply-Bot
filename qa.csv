@@ -527,3 +527,169 @@ how many years of work experience do you have with visual studio?,1
 how many years of work experience do you have with windows server?,1
 "how many years of work experience do you have with windows?
 enter a whole number between 0 and 99",1
+"how many years of work experience do you have with oracle e-business suite?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with oracle database?,6
+"how many years of work experience do you have with oracle lease management?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with oracle database?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with oracle e-business suite?,6
+"would you be able to share your recent react native projects with us and explain your specific involvement with that project?
+would you be able to share your recent react native projects with us and explain your specific involvement with that project?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",user provided
+"how many hours per week are you available?
+enter a decimal number larger than 0.0",6
+"how many years of work experience do you have with electronic data interchange (edi)?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with healthcare?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with error correction?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with c# in .net?,6
+"how many years of work experience do you have with twilio?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with api development?,6
+"how many years of work experience do you have with stored procedures?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with oracle application express?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with pl/sql?,6
+"which of the following best describes your gender?
+which of the following best describes your gender?
+required
+       select an option
+       man
+       non-binary
+       woman
+       other gender identity
+       prefer not to say
+   please make a selection",Male
+"what is your race/ethnicity?
+what is your race/ethnicity?
+required
+       select an option
+       american indian or alaska native
+       asian
+       black or african american
+       hispanic or latino
+       native hawaiian or other pacific islander
+       white
+       two or more races
+       prefer not to answer
+   please make a selection",white
+"are you a protected veteran? (definitions)
+are you a protected veteran?
+required
+yes
+no
+prefer not to answer
+please make a selection",Yes
+"do you have (or have a history/record of having) a disability? (definitions)
+do you have (or have a history/record of having) a disability?
+required
+yes, i have a disability, or have had one in the past.
+no, i do not have a disability and have not had one in the past.
+i do not want to answer.
+please make a selection",Yes
+"which of the following best describes your gender?
+which of the following best describes your gender?
+required
+       select an option
+       man
+       non-binary
+       woman
+       other gender identity
+       prefer not to say
+  ",Male
+"what is your race/ethnicity?
+what is your race/ethnicity?
+required
+       select an option
+       american indian or alaska native
+       asian
+       black or african american
+       hispanic or latino
+       native hawaiian or other pacific islander
+       white
+       two or more races
+       prefer not to answer
+  ",white
+"by checking this box, you will declare that you read and understand the experian privacy policy, and the smartrecruiters privacy policy and smartrecruiters  terms of use.
+by checking this box, you will declare that you read and understand the experian, and the smartrecruitersand smartrecruiters.
+required
+i agree terms & conditions",user provided
+"by checking this box, you will declare that you read and understand the experian privacy policy, and the smartrecruiters privacy policy and smartrecruiters  terms of use.
+by checking this box, you will declare that you read and understand the experian, and the smartrecruitersand smartrecruiters.
+required
+i agree terms & conditions
+select checkbox to proceed",user provided
+"what is your desired salary? (usd)
+enter a decimal number larger than 0.0","60,000"
+"will you now or in the future require sponsorship for employment visa status (e.g., h-1b visa status)?
+will you now or in the future require sponsorship for employment visa status (e.g., h-1b visa status)?
+required
+yes
+no
+please make a selection",No
+"are you currently subject to a non-compete and/or non-solicit agreement with a current or former employer?
+are you currently subject to a non-compete and/or non-solicit agreement with a current or former employer?
+required
+yes
+no
+please make a selection",Yes
+"your message to the hiring manager
+0/2,000
+2000 maximum characters allowed.",user provided
+"due to the nature of the work performed, us citizenship or a us person (with a green card) is required. do you have any concerns with this requirement?
+due to the nature of the work performed, us citizenship or a us person (with a green card) is required. do you have any concerns with this requirement?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of full stack software development do you have?
+enter a decimal number larger than 0.0",6
+"do you have experience with react?
+do you have experience with react?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you able comfortable supporting the hours of 9:00-5:00pm pdt?
+are you able comfortable supporting the hours of 9:00-5:00pm pdt?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"due to the nature of the work performed, us citizenship or a us person (with a green card) is required. do you have any concerns with this requirement?
+due to the nature of the work performed, us citizenship or a us person (with a green card) is required. do you have any concerns with this requirement?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you have experience with react?
+do you have experience with react?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you able comfortable supporting the hours of 9:00-5:00pm pdt?
+are you able comfortable supporting the hours of 9:00-5:00pm pdt?
+required
+       select an option
+       yes
+       no
+  ",Yes
+how many years of full stack software development do you have?,6
+how many years of work experience do you have with microsoft azure?,6
+how many years of work experience do you have with integration platform as a service (ipaas)?,6
+how many years of work experience do you have with kubernetes?,6
