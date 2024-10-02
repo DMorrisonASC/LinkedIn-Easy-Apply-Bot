@@ -778,3 +778,295 @@ how many years of work experience do you have with mysql?,6
 enter a whole number between 0 and 99",6
 "how many years of insurance experience do you currently have?
 enter a whole number between 0 and 99",6
+"what is your yearly salary expectation in us
+please enter a valid answer","60,000"
+"are you legally authorized to work in the united states without visa sponsorship?
+are you legally authorized to work in the united states without visa sponsorship?
+required
+yes
+no, i would need sponsorship
+please make a selection",No
+"do you have at least 1 year working with curam?
+do you have at least 1 year working with curam?
+required
+yes
+no
+please make a selection",Yes
+what is your yearly salary expectation in us,"60,000"
+"are you legally authorized to work in the united states without visa sponsorship?
+are you legally authorized to work in the united states without visa sponsorship?
+required
+yes
+no, i would need sponsorship",No
+"do you have at least 1 year working with curam?
+do you have at least 1 year working with curam?
+required
+yes
+no",Yes
+"how many years of entertainment providers experience do you currently have?
+enter a whole number between 0 and 99",6
+"how many years of broadcast media production and distribution experience do you currently have?
+enter a whole number between 0 and 99",6
+"how many years of online audio and video media experience do you currently have?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with typescript?,6
+"how many years of work experience do you have with aws serverless technologies?
+enter a decimal number larger than 0.0",6
+"are you able to work on a w2 contract? 
+are you able to work on a w2 contract?
+required
+       select an option
+       yes
+       no
+  ",Yes
+how many years of work experience do you have with spring framework?,6
+"how many years of work experience do you have with apache kafka?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with azure sql?,6
+"are you comfortable working in a hybrid setting?
+are you comfortable working in a hybrid setting?
+required
+yes
+no",Yes
+how many years of work experience do you have with apache kafka?,6
+"have you completed the following level of education: associate's degree?
+have you completed the following level of education: associate's degree?
+required
+yes
+no",Yes
+"how many years of work experience do you have with configuration management?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with terraform?,6
+"do you have 1-2 years of windows server administration experience?
+do you have 1-2 years of windows server administration experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have 1-year of public cloud administration (i.e. aws, azure, google, oci)?
+do you have 1-year of public cloud administration (i.e. aws, azure, google, oci)?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have 1-year experience working on an enterprise level operations team?
+do you have 1-year experience working on an enterprise level operations team?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have at least 1 year of professional experience in cloud automation configuration using terraform?
+do you have at least 1 year of professional experience in cloud automation configuration using terraform?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with tridium niagara?
+enter a whole number between 0 and 99",6
+"do you hold a niagara certification? 
+do you hold a niagara certification?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have 7+ years of software development experience preferably in an enterprise environment?
+enter a decimal number larger than 0.0",Yes
+"if not local to wichita, are you comfortable with relocating? posting covers the logistics of this! 
+if not local to wichita, are you comfortable with relocating? posting covers the logistics of this!
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a strong understanding and experience working in asynchronous serverless aws environments with knowledge? 
+do you have a strong understanding and experience working in asynchronous serverless aws environments with knowledge?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience working in an agile environment with bi-weekly sprints?
+do you have experience working in an agile environment with bi-weekly sprints?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you comfortable being onboarded as a direct hire for this client? this will not be c2c.
+are you comfortable being onboarded as a direct hire for this client? this will not be c2c.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with git?,6
+how many years of work experience do you have with aws lambda?,6
+"how many years of work experience do you have with esri?
+enter a whole number between 0 and 99",6
+"mandatory: we only accept w2 applicants, are you willing to work on w2?
+mandatory: we only accept w2 applicants, are you willing to work on w2?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"please mention your work authorization status using the following codes: usc: 0 | gc: 1 | gc_ead: 2 | h1b: 3 | h4: 4 | tn: 5 | opt - 6 | others: 7
+enter a decimal number larger than 0.0",user provided
+"do you have any experience with angular 15 or higher?
+do you have any experience with angular 15 or higher?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have any experience with angular 15 or higher?
+do you have any experience with angular 15 or higher?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"mandatory: we only accept w2 applicants, are you willing to work on w2?
+mandatory: we only accept w2 applicants, are you willing to work on w2?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"how many years of retail experience do you currently have?
+enter a whole number between 0 and 99",6
+"how many years of food and beverage manufacturing experience do you currently have?
+enter a whole number between 0 and 99",6
+"how many years of experience do you have with integration of ai as part of front end development?
+enter a decimal number larger than 0.0",6
+"are you able to work on a w2 contract without sponsorship or c2c? 
+are you able to work on a w2 contract without sponsorship or c2c?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+how many years of work experience do you have with nosql?,6
+how many years of work experience do you have with golang ?,6
+"are you open to traveling approximately once per quarter in one week increments?
+are you open to traveling approximately once per quarter in one week increments?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you require sponsorship now or in the future at all?
+do you require sponsorship now or in the future at all?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"are you open to traveling approximately once per quarter in one week increments?
+are you open to traveling approximately once per quarter in one week increments?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"do you require sponsorship now or in the future at all?
+do you require sponsorship now or in the future at all?
+required
+       select an option
+       yes
+       no
+  ",No
+how many years of work experience do you have with next.js?,6
+how many years of experience do you have with angular 12+ ?,6
+"are you able to work on a w2 contract without sponsorship or c2c? 
+are you able to work on a w2 contract without sponsorship or c2c?
+required
+       select an option
+       yes
+       no
+  ",No
+how many years of experience do you have as a backend engineer?,6
+how many years of work experience do you have with google cloud platform (gcp)?,6
+"do you have experience in google cloud services, specifically airflow and composer?",Yes
+"how many years of work experience do you have with python (programming language)?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with powershell?,6
+"are you willing to work on w2?
+are you willing to work on w2?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with data governance?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with informatica?,6
+"do you have the following license or certification: data governance and stewardship professional (dgsp)?
+do you have the following license or certification: data governance and stewardship professional (dgsp)?
+required
+yes
+no
+please make a selection",Yes
+"do you have 8-9 years + of hands on experience working with ataccama?
+do you have 8-9 years + of hands on experience working with ataccama?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you located in the usa?
+are you located in the usa?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you experienced within a start-up or scale-up environment?
+are you experienced within a start-up or scale-up environment?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with react hooks?
+enter a whole number between 0 and 99",6
+"are you experienced within ai, insurtech, fintech or healthtech?
+are you experienced within ai, insurtech, fintech or healthtech?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"did you attend a 'blue collar college in usa or canada for computer science?
+did you attend a 'blue collar college in usa or canada for computer science?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",user provided
+"are you experienced within a start-up or scale-up environment?
+are you experienced within a start-up or scale-up environment?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"are you experienced within ai, insurtech, fintech or healthtech?
+are you experienced within ai, insurtech, fintech or healthtech?
+required
+       select an option
+       yes
+       no
+  ",Yes
+"did you attend a 'blue collar college in usa or canada for computer science?
+did you attend a 'blue collar college in usa or canada for computer science?
+required
+       select an option
+       yes
+       no
+  ",user provided

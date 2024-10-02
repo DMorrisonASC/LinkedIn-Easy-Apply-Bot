@@ -16,6 +16,7 @@ import pyautogui
 import yaml
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -235,7 +236,7 @@ class EasyApplyBot:
         self.browser.set_window_position(1, 1)
         self.browser.maximize_window()
         self.browser, _ = self.next_jobs_page(position, location, jobs_per_page, experience_level=self.experience_level)
-        log.info("Looking for jobs.. Please wait..")
+        log.info("Set and maximize window")
 
         while time.time() - start_time < self.MAX_SEARCH_TIME:
             try:
@@ -337,6 +338,7 @@ class EasyApplyBot:
                     string_easy = "*Applied: Sent Resume"
                 else:
                     string_easy = "*Did not apply: Failed to send Resume"
+
         elif "You applied on" in self.browser.page_source:
             log.info("You have already applied to this position.")
             string_easy = "* Already Applied"
@@ -443,6 +445,7 @@ class EasyApplyBot:
 
             submitted = False
             loop = 0
+
             while loop < 2:
                 time.sleep(2)
                 # Upload resume
@@ -531,22 +534,23 @@ class EasyApplyBot:
             log.error(e)
             log.error("cannot apply to this job")
             pass
-            #raise (e)
 
         return submitted
         
     def process_questions(self):
         time.sleep(2)
         form = self.get_elements("fields")  # Getting form elements
-        print(form)
+
+        print("Length: ",len(form))
         for field in form:
             question = field.text
             answer = self.ans_question(question.lower())
 
-            # Check if input type is radio button
-            if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:  # For yes/no or 1/0 type answers
+        # Check if input type is radio button
+            if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:
                 try:
-                    input = field.find_element(By.CSS_SELECTOR, "input[type='radio'][value='{}']".format(answer))
+                    input = field.find_element(By.XPATH, ".//input[@type='radio' and @value='{}']".format(answer))
+                    WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(input))
                     self.browser.execute_script("arguments[0].click();", input)
                 except Exception as e:
                     log.error(f"Radio button error: {e}, selecting a random choice")
@@ -563,23 +567,29 @@ class EasyApplyBot:
             # Multi-select case
             elif self.is_present(self.locator["multi_select"]):
                 try:
-                    input = field.find_element(self.locator["multi_select"])  # Ensure locator is valid and string-based
+                    # Use XPath to locate the <select> element within the current field
+                    input = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, ".//select")))
+                    log.info("Multi-select element located.")
                     input.send_keys(answer)
+                    
+                    # Ensure the correct option is selected
+                    options = input.find_elements(By.TAG_NAME, "option")
+                    for option in options:
+                        if option.text.strip().lower() == answer.lower():
+                            option.click()
+                            log.info(f"Option selected: {option.text}")
+                            break
+                
                 except Exception as e:
                     log.error(f"Multi-select error: {e}, selecting a random choice")
                     try:
-                        # Randomly select a value from available options
-                        multi_select_options = field.find_elements(By.TAG_NAME, "option")  # Assuming multi-select has <option> tags
-                        if multi_select_options:
-                            random_choice = random.choice(multi_select_options)
-                            random_choice.click()
-                            log.info(f"Random multi-select option chosen: {random_choice.text}")
-                        else:
-                            log.error("No multi-select options found")
+                        # Randomly select a value from available options if no match is found
+                        random_choice = random.choice(options)
+                        random_choice.click()
+                        log.info(f"Random multi-select option chosen: {random_choice.text}")
                     except Exception as fallback_error:
                         log.error(f"Failed to select random multi-select option: {fallback_error}")
-                    continue
-                
+
             # Handle text input fields
             elif self.is_present(self.locator["text_select"]):
                 try:
@@ -601,23 +611,6 @@ class EasyApplyBot:
                     log.error(f"(process_questions(2)) Text field error: {e}")
                     continue
 
-            # Handle custom Yes/No answers with radio buttons
-            elif answer in ["yes", "no"]:
-                try:
-                    input = field.find_element(By.CSS_SELECTOR, "input[type='radio'][value='{}']".format(answer))
-                    self.browser.execute_script("arguments[0].click();", input)
-                except Exception as e:
-                    log.error(f"Yes/No radio button error: {e}, selecting a random choice")
-                    try:
-                        # Randomly select a Yes/No radio button
-                        radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
-                        random_choice = random.choice(radio_buttons)
-                        self.browser.execute_script("arguments[0].click();", random_choice)
-                        log.info(f"Random Yes/No choice selected: {random_choice.get_attribute('value')}")
-                    except Exception as fallback_error:
-                        log.error(f"Failed to select random Yes/No radio button: {fallback_error}")
-                    continue
-
             else:
                 log.info(f"Unable to determine field type for question: {question}, moving to next field.")
 
@@ -635,6 +628,8 @@ class EasyApplyBot:
         elif "currently reside" in question:
             answer = "Yes"
         elif "do you" in question:
+            answer = "Yes"
+        elif "did you" in question:
             answer = "Yes"
         elif "do you" in question and "experience" in question:
             answer = "Yes"
@@ -665,7 +660,7 @@ class EasyApplyBot:
         else:
             log.info("Not able to answer question automatically. Please provide answer")
             #open file and document unanswerable questions, appending to it
-            answer = "user provided"
+            answer = "yes"
             time.sleep(15)
 
             # df = pd.DataFrame(self.answers, index=[0])
