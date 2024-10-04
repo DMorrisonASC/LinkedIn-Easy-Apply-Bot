@@ -563,83 +563,6 @@ class EasyApplyBot:
             pass
 
         return submitted
-        
-    # def process_questions(self):
-    #     time.sleep(2)
-    #     form = self.get_elements("fields")  # Getting form elements
-
-    #     print("Length: ",len(form))
-    #     for field in form:
-    #         question = field.text
-    #         answer = self.ans_question(question.lower())
-
-    #     # Check if input type is radio button
-    #         if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:
-    #             try:
-    #                 input = field.find_element(By.XPATH, ".//input[@type='radio' and @value='{}']".format(answer))
-    #                 WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(input))
-    #                 self.browser.execute_script("arguments[0].click();", input)
-    #             except Exception as e:
-    #                 log.error(f"Radio button error: {e}, selecting a random choice")
-    #                 try:
-    #                     # Randomly select a radio button if there is an error
-    #                     radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
-    #                     random_choice = random.choice(radio_buttons)
-    #                     self.browser.execute_script("arguments[0].click();", random_choice)
-    #                     log.info(f"Random choice selected: {random_choice.get_attribute('value')}")
-    #                 except Exception as fallback_error:
-    #                     log.error(f"Failed to select random radio button: {fallback_error}")
-    #                 continue
-
-    #         # Multi-select case
-    #         elif self.is_present(self.locator["multi_select"]):
-    #             try:
-    #                 # Use XPath to locate the <select> element within the current field
-    #                 input = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, ".//select")))
-    #                 log.info("Multi-select element located.")
-    #                 input.send_keys(answer)
-                    
-    #                 # Ensure the correct option is selected
-    #                 options = input.find_elements(By.TAG_NAME, "option")
-    #                 for option in options:
-    #                     if option.text.strip().lower() == answer.lower():
-    #                         option.click()
-    #                         log.info(f"Option selected: {option.text}")
-    #                         break
-                
-    #             except Exception as e:
-    #                 log.error(f"Multi-select error: {e}, selecting a random choice")
-    #                 try:
-    #                     # Randomly select a value from available options if no match is found
-    #                     random_choice = random.choice(options)
-    #                     random_choice.click()
-    #                     log.info(f"Random multi-select option chosen: {random_choice.text}")
-    #                 except Exception as fallback_error:
-    #                     log.error(f"Failed to select random multi-select option: {fallback_error}")
-
-    #         # Handle text input fields
-    #         elif self.is_present(self.locator["text_select"]):
-    #             try:
-    #                 input = field.find_element(*self.locator["text_select"])
-    #                 print(self.locator["text_select"])
-    #                 input.clear()
-    #                 input.send_keys(answer)
-    #             except Exception as e:
-    #                 log.error(f"(process_questions(1) )Text field error: {e}")
-    #                 continue
-
-    #         # Handle text input fields
-    #         elif self.is_present(self.locator["text_select2"]):
-    #             try:
-    #                 input = field.find_element(*self.locator["text_select2"])
-    #                 input.clear()
-    #                 input.send_keys(answer)
-    #             except Exception as e:
-    #                 log.error(f"(process_questions(2)) Text field error: {e}")
-    #                 continue
-
-    #         else:
-    #             log.info(f"Unable to determine field type for question: {question}, moving to next field.")
 
     def process_questions(self):
         time.sleep(3)
@@ -807,11 +730,13 @@ class EasyApplyBot:
             answer = "Yes"
 
         # Work authorization questions
-        elif "work" in question and "authorization" in question:
+        elif "work" in question and ("authorization" in question or "authorized" in question):
             if "usc" in question:
                 answer = "USC: 0"
             elif "status" in question:
                 answer = "U.S Citizen"
+        elif "W2" in question:
+            answer = "Yes"
 
         # Disability and drug test-related questions
         elif "do you" in question and "disability" in question:
