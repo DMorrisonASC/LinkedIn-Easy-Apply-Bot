@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -117,10 +118,9 @@ class EasyApplyBot:
             "search": (By.CLASS_NAME, "jobs-search-results-list"),
             "links": (By.XPATH, '//div[@data-job-id]'),  # Corrected this line
             "fields": (By.CLASS_NAME, "jobs-easy-apply-form-section__grouping"),
-            "radio_select": (By.CSS_SELECTOR, "input[type='radio']"),  # You can append [value={}].format(answer) dynamically later
-            "multi_select": (By.XPATH, "//select[starts-with(@id, 'text-entity-list-form')]"),
-            "text_select": (By.XPATH, "//input[contains(normalize-space(@class), ' artdeco-text-input--input') and @required]"),
-            "text_select2": (By.XPATH, "//input[contains(normalize-space(@class), 'artdeco-text-input--input') and @required]"),
+            "radio_select": (By.XPATH, "//input[starts-with(normalize-space(@id), 'urn:li:fsd_formElement:urn:li:jobs_applyformcommon_easyApplyFormElement:') and @type='radio' and @value='Yes']"),
+            "multi_select": (By.XPATH, "//select[starts-with(normalize-space(@id), 'text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @required='']"),
+            "text_select": (By.XPATH, "//input[starts-with(@id, 'single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @type='text']"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
         }
@@ -318,6 +318,7 @@ class EasyApplyBot:
 
         # get easy apply button
         button = self.get_easy_apply_button()
+        # 
 
 
         # word filter to skip positions not wanted
@@ -330,6 +331,7 @@ class EasyApplyBot:
                 string_easy = "* has Easy Apply Button"
                 log.info("Clicking the EASY apply button")
                 button.click()
+
                 clicked = True
                 time.sleep(1)
                 self.fill_out_fields()
@@ -383,9 +385,7 @@ class EasyApplyBot:
         EasyApplyButton = False
         try:
             buttons = self.get_elements("easy_apply_button")
-            # buttons = self.browser.find_elements("xpath",
-            #     '//button[contains(@class, "jobs-apply-button")]'
-            # )
+
             for button in buttons:
                 if "Easy Apply" in button.text or "Continue applying" in button.text:
                     EasyApplyButton = button
@@ -397,6 +397,23 @@ class EasyApplyBot:
             print("Exception:",e)
             log.debug("Easy Apply button not found")
 
+        return EasyApplyButton
+        
+    def get_continue_button(self):
+        continueButton = False
+        try:
+            buttons = self.get_elements("easy_apply_button")
+
+            for button in buttons:
+                if "Easy Apply" in button.text or "Continue applying" in button.text:
+                    EasyApplyButton = button
+                    self.wait.until(EC.element_to_be_clickable(continueButton))
+                else:
+                    log.debug("Easy Apply button not found")
+            
+        except Exception as e: 
+            print("Exception:",e)
+            log.debug("Easy Apply button not found")
 
         return EasyApplyButton
 
@@ -408,8 +425,6 @@ class EasyApplyBot:
                 field_input = field.find_element(By.TAG_NAME, "input")
                 field_input.clear()
                 field_input.send_keys(self.phone_number)
-
-
         return
 
 
@@ -423,6 +438,22 @@ class EasyApplyBot:
     def is_present(self, locator):
         return len(self.browser.find_elements(locator[0],
                                               locator[1])) > 0
+
+    def is_found_field(self, locator, field):
+        try:
+            return len(field.find_elements(locator[0], locator[1])) > 0
+        except Exception as e:
+            print(f"Error occurred while finding elements: {e}")
+            return False
+
+    def get_child_elements(self, locator, field):
+        try:
+            return field.find_elements(locator[0], locator[1])
+        except Exception as e:
+            print(f"Error occurred while finding elements: {e}")
+            return []  # Return an empty list instead of False
+
+
 
     def send_resume(self) -> bool:
         def is_present(button_locator) -> bool:
@@ -484,7 +515,6 @@ class EasyApplyBot:
 
                 elif len(self.get_elements("error")) > 0:
 
-                    elements = self.get_elements("error")
                     print("Length", len(self.get_elements("error")))
                     
                     if "application was sent" in self.browser.page_source:
@@ -493,12 +523,11 @@ class EasyApplyBot:
                         break
 
                     else:
-                        while len(elements) > 0:
+                        while True:
                             log.info("Please answer the questions, waiting 5 seconds...")
                             time.sleep(5)
 
-                            for element in elements:
-                                self.process_questions()
+                            self.process_questions()
 
                             if "application was sent" in self.browser.page_source:
                                 log.info("Application Submitted")
@@ -508,8 +537,6 @@ class EasyApplyBot:
                                 log.info("Skipping application")
                                 submitted = False
                                 break
-
-                            elements = self.get_elements("error")
 
                 elif len(self.get_elements("next")) > 0:
                     elements = self.get_elements("next")
@@ -537,146 +564,310 @@ class EasyApplyBot:
 
         return submitted
         
+    # def process_questions(self):
+    #     time.sleep(2)
+    #     form = self.get_elements("fields")  # Getting form elements
+
+    #     print("Length: ",len(form))
+    #     for field in form:
+    #         question = field.text
+    #         answer = self.ans_question(question.lower())
+
+    #     # Check if input type is radio button
+    #         if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:
+    #             try:
+    #                 input = field.find_element(By.XPATH, ".//input[@type='radio' and @value='{}']".format(answer))
+    #                 WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(input))
+    #                 self.browser.execute_script("arguments[0].click();", input)
+    #             except Exception as e:
+    #                 log.error(f"Radio button error: {e}, selecting a random choice")
+    #                 try:
+    #                     # Randomly select a radio button if there is an error
+    #                     radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
+    #                     random_choice = random.choice(radio_buttons)
+    #                     self.browser.execute_script("arguments[0].click();", random_choice)
+    #                     log.info(f"Random choice selected: {random_choice.get_attribute('value')}")
+    #                 except Exception as fallback_error:
+    #                     log.error(f"Failed to select random radio button: {fallback_error}")
+    #                 continue
+
+    #         # Multi-select case
+    #         elif self.is_present(self.locator["multi_select"]):
+    #             try:
+    #                 # Use XPath to locate the <select> element within the current field
+    #                 input = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, ".//select")))
+    #                 log.info("Multi-select element located.")
+    #                 input.send_keys(answer)
+                    
+    #                 # Ensure the correct option is selected
+    #                 options = input.find_elements(By.TAG_NAME, "option")
+    #                 for option in options:
+    #                     if option.text.strip().lower() == answer.lower():
+    #                         option.click()
+    #                         log.info(f"Option selected: {option.text}")
+    #                         break
+                
+    #             except Exception as e:
+    #                 log.error(f"Multi-select error: {e}, selecting a random choice")
+    #                 try:
+    #                     # Randomly select a value from available options if no match is found
+    #                     random_choice = random.choice(options)
+    #                     random_choice.click()
+    #                     log.info(f"Random multi-select option chosen: {random_choice.text}")
+    #                 except Exception as fallback_error:
+    #                     log.error(f"Failed to select random multi-select option: {fallback_error}")
+
+    #         # Handle text input fields
+    #         elif self.is_present(self.locator["text_select"]):
+    #             try:
+    #                 input = field.find_element(*self.locator["text_select"])
+    #                 print(self.locator["text_select"])
+    #                 input.clear()
+    #                 input.send_keys(answer)
+    #             except Exception as e:
+    #                 log.error(f"(process_questions(1) )Text field error: {e}")
+    #                 continue
+
+    #         # Handle text input fields
+    #         elif self.is_present(self.locator["text_select2"]):
+    #             try:
+    #                 input = field.find_element(*self.locator["text_select2"])
+    #                 input.clear()
+    #                 input.send_keys(answer)
+    #             except Exception as e:
+    #                 log.error(f"(process_questions(2)) Text field error: {e}")
+    #                 continue
+
+    #         else:
+    #             log.info(f"Unable to determine field type for question: {question}, moving to next field.")
+
     def process_questions(self):
-        time.sleep(2)
+        time.sleep(3)
+
         form = self.get_elements("fields")  # Getting form elements
 
-        print("Length: ",len(form))
-        for field in form:
-            question = field.text
-            answer = self.ans_question(question.lower())
+        print("Length: ", len(form))
 
-        # Check if input type is radio button
-            if self.is_present(self.locator["radio_select"]) and answer in ["yes", "no", "1", "0"]:
+        for i in range(len(form)):  
+
+            try:
+                # Attempt to re-locate the elements dynamically inside the loop
+                form = self.get_elements("fields")
+                field = form[i]
+                question = field.text
+                answer = self.ans_question(question.lower())
+            except StaleElementReferenceException:
+                log.warning(f"Element became stale: {field}, re-fetching form elements.")
+                continue
+
+            # Clear existing selections
+            try:
+                # Unselect radio buttons
+                if self.is_found_field(self.locator["radio_select"], field):
+                    radio_buttons = self.get_child_elements(self.locator["radio_select"], field)
+
+                    for radio_button in radio_buttons:
+                        self.browser.execute_script("""
+                    arguments[0].checked = false;
+                    arguments[0].dispatchEvent(new Event('change'));
+                """, radio_button)
+                        log.info("Radio button unselected")
+
+                # Unselect multi-select options
+                elif self.is_found_field(self.locator["multi_select"], field):
+                    # Assuming you're expecting only one select element, fetch the first element
+                    select_element = self.get_child_elements(self.locator["multi_select"], field)[0]
+                    
+                    # Find all selected options within that select element
+                    selected_options = select_element.find_elements(By.CSS_SELECTOR, "option[selected]")
+
+                    # Unselect each selected option using JavaScript
+                    for option in selected_options:
+                        self.browser.execute_script("""
+                            arguments[0].selected = false; 
+                            arguments[0].dispatchEvent(new Event('change'));
+                        """, option)
+                        log.info("Multi-select option unselected")
+
+            except Exception as e:
+                log.error(f"Error clearing existing selections: {e}")
+
+        for i in range(len(form)):
+
+            try:
+                # Attempt to re-locate the elements dynamically inside the loop
+                form = self.get_elements("fields")
+                field = form[i]
+                question = field.text
+                answer = self.ans_question(question.lower())
+
+            except StaleElementReferenceException:
+                log.warning(f"Element became stale: {field}, re-fetching form elements.")
+                continue
+
+            # Check if input type is radio button
+            if self.is_found_field(self.locator["radio_select"], field) and answer.lower() in ["yes", "no", "1", "0"]:
                 try:
-                    input = field.find_element(By.XPATH, ".//input[@type='radio' and @value='{}']".format(answer))
-                    WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(input))
-                    self.browser.execute_script("arguments[0].click();", input)
+                    radio_buttons = self.get_child_elements(self.locator["radio_select"], field)
+                    selected = False  # Flag to check if the radio button was selected
+                    
+                    # Try to select the exact match first
+                    for radio_button in radio_buttons:
+                        if radio_button.get_attribute('value').lower() == answer.lower():
+                            WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(radio_button))
+                            self.browser.execute_script("""
+                                arguments[0].click();
+                                arguments[0].dispatchEvent(new Event('change'));
+                            """, radio_button)
+                            log.info(f"Radio button selected: {radio_button.get_attribute('value')}")
+                            selected = True
+                            break
+
+                    # If not selected, find the closest match
+                    if not selected:
+                        log.info("Exact match not found, looking for closest answer...")
+                        closest_match = None
+                        closest_value = ""
+                        
+                        for radio_button in radio_buttons:
+                            radio_value = radio_button.get_attribute('value').lower()
+                            
+                            # Check for closest match
+                            if "yes" in radio_value or "no" in radio_value:  # Add other keywords as necessary
+                                closest_value = radio_value
+                                closest_match = radio_button
+                                break  # Select the first closest match found
+
+                        if closest_match:
+                            WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(closest_match))
+                            self.browser.execute_script("""
+                                arguments[0].click();
+                                arguments[0].dispatchEvent(new Event('change'));
+                            """, closest_match)
+                            log.info(f"Closest radio button selected: {closest_value}")
+                        else:
+                            log.warning("No suitable radio button found to select.")
+
                 except Exception as e:
-                    log.error(f"Radio button error: {e}, selecting a random choice")
-                    try:
-                        # Randomly select a radio button if there is an error
-                        radio_buttons = field.find_elements(By.CSS_SELECTOR, "input[type='radio']")
-                        random_choice = random.choice(radio_buttons)
-                        self.browser.execute_script("arguments[0].click();", random_choice)
-                        log.info(f"Random choice selected: {random_choice.get_attribute('value')}")
-                    except Exception as fallback_error:
-                        log.error(f"Failed to select random radio button: {fallback_error}")
-                    continue
+                    log.error(f"Radio button error: {e}")
 
             # Multi-select case
-            elif self.is_present(self.locator["multi_select"]):
-                try:
-                    # Use XPath to locate the <select> element within the current field
-                    input = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, ".//select")))
-                    log.info("Multi-select element located.")
-                    input.send_keys(answer)
-                    
-                    # Ensure the correct option is selected
-                    options = input.find_elements(By.TAG_NAME, "option")
-                    for option in options:
-                        if option.text.strip().lower() == answer.lower():
-                            option.click()
-                            log.info(f"Option selected: {option.text}")
-                            break
-                
-                except Exception as e:
-                    log.error(f"Multi-select error: {e}, selecting a random choice")
+            elif self.is_found_field(self.locator["multi_select"], field):
+                # Retry logic with a max retry limit (optional)
+                max_retries = 3
+                retry_count = 0
+                while retry_count < max_retries:
                     try:
-                        # Randomly select a value from available options if no match is found
-                        random_choice = random.choice(options)
-                        random_choice.click()
-                        log.info(f"Random multi-select option chosen: {random_choice.text}")
-                    except Exception as fallback_error:
-                        log.error(f"Failed to select random multi-select option: {fallback_error}")
+                        select_element = WebDriverWait(self.browser, 2).until(
+                            EC.presence_of_element_located(self.locator["multi_select"])
+                        )
+                        options = select_element.find_elements(By.TAG_NAME, "option")
+                        for option in options:
+                            if option.text.strip().lower() == answer.lower():
+                                option.click()
+                                log.info(f"Option selected: {option.text}")
+                                break
+                        break  # Exit the loop if successful
+                    except StaleElementReferenceException:
+                        retry_count += 1
+                        log.warning(f"Retrying due to stale element. Attempt {retry_count}/{max_retries}")
+                    except Exception as e:
+                        log.error(f"Multi-select error: {e}")
+                        break
 
             # Handle text input fields
-            elif self.is_present(self.locator["text_select"]):
+            elif self.is_found_field(self.locator["text_select"], field):
                 try:
-                    input = field.find_element(*self.locator["text_select"])
-                    print(self.locator["text_select"])
-                    input.clear()
-                    input.send_keys(answer)
+                    text_fields = self.get_child_elements(self.locator["text_select"], field)
+                    for text_field in text_fields:
+                        text_field.clear()
+                        text_field.send_keys(answer)
+                        log.info(f"Text input field populated with: {answer}")
                 except Exception as e:
-                    log.error(f"(process_questions(1) )Text field error: {e}")
-                    continue
-
-            # Handle text input fields
-            elif self.is_present(self.locator["text_select2"]):
-                try:
-                    input = field.find_element(*self.locator["text_select2"])
-                    input.clear()
-                    input.send_keys(answer)
-                except Exception as e:
-                    log.error(f"(process_questions(2)) Text field error: {e}")
-                    continue
-
+                    log.error(f"(process_questions(1)) Text field error: {e}")
+                    
             else:
                 log.info(f"Unable to determine field type for question: {question}, moving to next field.")
-
-
-    def ans_question(self, question): #refactor this to an ans.yaml file
+ 
+    def ans_question(self, question):  # refactor this to an ans.yaml file
         answer = None
-        if "how many" in question:
+        question = question.lower().strip()
+
+        # English proficiency-related questions
+        if "english" in question:
+            if "speak" in question or "communicate" in question:
+                answer = "Yes"
+            elif "proficiency" in question or "level" in question:
+                answer = "Native"
+
+        # Experience-related questions
+        elif "how many" in question and "experience" in question:
             answer = "6"
-        elif "sponsor" in question:
-            answer = "No"
-        elif "English" in question and ("speak" in question or "communicate" in question) :
-            answer = "Yes"
-        elif ("proficiency" in question or "level" in question) and "English" in question:
-            answer = "Native"
-        elif "currently reside" in question:
-            answer = "Yes"
-        elif "do you" in question:
-            answer = "Yes"
-        elif "did you" in question:
-            answer = "Yes"
         elif "do you" in question and "experience" in question:
             answer = "Yes"
-        elif "have you " in question:
+
+        # Work authorization questions
+        elif "work" in question and "authorization" in question:
+            if "usc" in question:
+                answer = "USC: 0"
+            elif "status" in question:
+                answer = "U.S Citizen"
+
+        # Disability and drug test-related questions
+        elif "do you" in question and "disability" in question:
+            answer = "No"
+        elif "drug test" in question:
+            if "positive" in question:
+                answer = "No"
+            elif "can you" in question:
+                answer = "Yes"
+
+        # Commuting and legal questions
+        elif "can you" in question and "commute" in question:
             answer = "Yes"
-        elif "US citizen" in question:
+        elif "criminal" in question or "felon" in question or "charged" in question:
+            answer = "No"
+
+        # Other personal questions
+        elif "sponsor" in question or "currently reside" in question:
             answer = "Yes"
-        elif "are you " in question:
+        elif ("us citizen" in question or "u.s. citizen" in question) and "clearance" in question:
             answer = "Yes"
         elif "salary" in question:
             answer = self.salary
-        elif "can you" in question:
-            answer = "Yes"
         elif "gender" in question:
             answer = "Male"
         elif "race" in question:
-            answer = "white"
+            answer = "White"
         elif "lgbtq" in question:
             answer = "No"
-        elif "ethnicity" in question:
-            answer = "Wish not to answer"
-        elif "nationality" in question:
-            answer = "Wish not to answer"
+        elif "ethnicity" in question or "nationality" in question:
+            answer = "White"
         elif "government" in question:
             answer = "I do not wish to self-identify"
         elif "are you legally" in question:
             answer = "Yes"
-        else:
-            log.info("Not able to answer question automatically. Please provide answer")
-            #open file and document unanswerable questions, appending to it
-            answer = "yes"
-            time.sleep(15)
 
-            # df = pd.DataFrame(self.answers, index=[0])
-            # df.to_csv(self.qa_file, encoding="utf-8")
+        # General affirmative questions
+        elif "do you" in question or "did you" in question or "have you" in question:
+            answer = "Yes"
+
+        # Default case for unanswered questions
+        if answer is None:
+            log.info("Not able to answer question automatically. Please provide answer")
+            answer = "1"  # Placeholder for unanswered questions
+            time.sleep(5)
+
         log.info("Answering question: " + question + " with answer: " + answer)
 
         # Append question and answer to the CSV
         if question not in self.answers:
             self.answers[question] = answer
-            # Append a new question-answer pair to the CSV file
             new_data = pd.DataFrame({"Question": [question], "Answer": [answer]})
             new_data.to_csv(self.qa_file, mode='a', header=False, index=False, encoding='utf-8')
-            # log appends to QA file
-            # log.info(f"Appended to QA file: '{question}' with answer: '{answer}'.")
 
         return answer
+
 
     def load_page(self, sleep=1):
         scroll_page = 0
