@@ -271,34 +271,34 @@ class EasyApplyBot:
                 # get job links, (the following are actually the job card objects)
                 if self.is_present(self.locator["links"]):
                     links = self.get_elements("links")
-                # links = self.browser.find_elements("xpath",
-                #     '//div[@data-job-id]'
-                # )
 
-                    jobIDs = {} #{Job id: processed_status}
-                
+                    jobIDs = {}  # {Job id: processed_status}
+
                     # children selector is the container of the job cards on the left
                     for link in links:
-                            if 'Applied' not in link.text: #checking if applied already
-                                if link.text not in self.blacklist: #checking if blacklisted
+                        try:
+                            # Sometimes the 'Applied' text is inside a child element, use a more specific locator
+                            if 'Applied' not in link.text and 'Applied' not in link.get_attribute('innerHTML'):
+                                if link.text not in self.blacklist:  # checking if blacklisted
                                     jobID = link.get_attribute("data-job-id")
                                     if jobID == "search":
-                                        log.debug("Job ID not found, search keyword found instead? {}".format(link.text))
+                                        log.debug(f"Job ID not found, search keyword found instead? {link.text}")
                                         continue
                                     else:
                                         jobIDs[jobID] = "To be processed"
+                        except Exception as e:
+                            log.error(f"Error processing job link: {e}")
+
                     if len(jobIDs) > 0:
                         self.apply_loop(jobIDs)
-                    self.browser, jobs_per_page = self.next_jobs_page(position,
-                                                                      location,
-                                                                      jobs_per_page, 
-                                                                      experience_level=self.experience_level)
-                else:
-                    self.browser, jobs_per_page = self.next_jobs_page(position,
-                                                                      location,
-                                                                      jobs_per_page, 
-                                                                      experience_level=self.experience_level)
 
+                    self.browser, jobs_per_page = self.next_jobs_page(
+                        position, location, jobs_per_page, experience_level=self.experience_level
+                    )
+                else:
+                    self.browser, jobs_per_page = self.next_jobs_page(
+                        position, location, jobs_per_page, experience_level=self.experience_level
+                    )
 
             except Exception as e:
                 print(e)
@@ -582,8 +582,15 @@ class EasyApplyBot:
                 # Attempt to re-locate the elements dynamically inside the loop
                 form = self.get_elements("fields")
                 field = form[i]
-                question = field.text
-                answer = self.ans_question(question.lower())
+                question = field.text.strip()  # Ensure question text is stripped of whitespace
+                
+                # Log the extracted question to verify uniqueness
+                log.info(f"Processing question: {question}")
+                
+                # Get answer for each question individually
+                answer = self.ans_question(question.lower())  
+                log.info(f"Answer determined: {answer}")
+
             except StaleElementReferenceException:
                 log.warning(f"Element became stale: {field}, re-fetching form elements.")
                 continue
@@ -626,8 +633,13 @@ class EasyApplyBot:
                 # Attempt to re-locate the elements dynamically inside the loop
                 form = self.get_elements("fields")
                 field = form[i]
-                question = field.text
-                answer = self.ans_question(question.lower())
+                question = field.text.strip()  # Strip whitespace from question
+                
+                # Log the extracted question to verify uniqueness
+                log.info(f"Processing question: {question}")
+
+                answer = self.ans_question(question.lower())  # Get answer based on the current question
+                log.info(f"Answer determined: {answer}")
 
             except StaleElementReferenceException:
                 log.warning(f"Element became stale: {field}, re-fetching form elements.")
@@ -719,7 +731,7 @@ class EasyApplyBot:
                     
             else:
                 log.info(f"Unable to determine field type for question: {question}, moving to next field.")
- 
+
  
     def ans_question(self, question):  # refactor this to an ans.yaml file
         answer = None
@@ -796,7 +808,7 @@ class EasyApplyBot:
         # Default case for unanswered questions
         if answer is None:
             log.info("Not able to answer question automatically. Please provide answer")
-            answer = "1"  # Placeholder for unanswered questions
+            answer = "4"  # Placeholder for unanswered questions
             time.sleep(5)
 
         log.info("Answering question: " + question + " with answer: " + answer)

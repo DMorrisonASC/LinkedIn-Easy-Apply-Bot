@@ -1928,3 +1928,70 @@ no",Yes
 how many years of work experience do you have with netapp?,5
 "how many years of work experience do you have with web content accessibility guidelines (wcag)?
 enter a whole number between 0 and 99",5
+how many years of work experience do you have with spring boot?,4
+"how many years of experience do you have working in restaurant and fast-food industry like taco bell, dominos etc.
+enter a decimal number larger than 0.0",6
+"how many years of experience do you have working in restaurant and fast-food industry like taco bell, dominos etc.",4
+"how many years of full stack development experience do you have?
+enter a decimal number larger than 0.0",4
+"do you currently reside in charlotte, or within a commutable distance?
+do you currently reside in charlotte, or within a commutable distance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have us citizenship or a greencard? (please do not click yes if not applicable as you are wasting your own time)
+do you have us citizenship or a greencard? (please do not click yes if not applicable as you are wasting your own time)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you happy to work full-time on-site?
+are you happy to work full-time on-site?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you currently reside in charlotte, or within a commutable distance?
+do you currently reside in charlotte, or within a commutable distance?
+required
+       select an option
+       yes
+       no",Yes
+"how many years of work experience do you have with i2c?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with analog-to-digital converters (adc)?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with internet protocol suite (tcp/ip)?
+enter a whole number between 0 and 99",4
+how many years of work experience do you have with analog-to-digital converters (adc)?,6
+how many years of work experience do you have with internet protocol suite (tcp/ip)?,3
+"are you a us citizen or green card holder?
+are you a us citizen or green card holder?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you eligible for w2 employment?
+are you eligible for w2 employment?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you a us citizen or green card holder?
+are you a us citizen or green card holder?
+required
+       select an option
+       yes
+       no",Yes
+"html, css
+enter a decimal number larger than 0.0",1
+"angular 13 or 16
+enter a decimal number larger than 0.0",1
+"html, css",1
+angular 13 or 16,1
