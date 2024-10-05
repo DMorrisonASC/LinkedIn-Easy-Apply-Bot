@@ -20,6 +20,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -108,6 +109,7 @@ class EasyApplyBot:
 
 
         self.locator = {
+            "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -119,9 +121,9 @@ class EasyApplyBot:
             "search": (By.CLASS_NAME, "jobs-search-results-list"),
             "links": (By.XPATH, '//div[@data-job-id]'),  # Corrected this line
             "fields": (By.CLASS_NAME, "jobs-easy-apply-form-section__grouping"),
-            "radio_select": (By.XPATH, "//input[starts-with(normalize-space(@id), 'urn:li:fsd_formElement:urn:li:jobs_applyformcommon_easyApplyFormElement:') and @type='radio' and @value='Yes']"),
-            "multi_select": (By.XPATH, "//select[starts-with(normalize-space(@id), 'text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @required='']"),
-            "text_select": (By.XPATH, "//input[starts-with(@id, 'single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @type='text']"),
+            "radio_select": (By.XPATH, ".//input[starts-with(normalize-space(@id), 'urn:li:fsd_formElement:urn:li:jobs_applyformcommon_easyApplyFormElement:') and @type='radio' and @value='Yes']"),
+            "multi_select": (By.XPATH, ".//select[starts-with(normalize-space(@id), 'text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @required='']"),
+            "text_select": (By.XPATH, ".//input[starts-with(@id, 'single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @type='text']"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
         }
@@ -180,21 +182,25 @@ class EasyApplyBot:
         log.info("Logging in.....Please wait :)")
         self.browser.get("https://www.linkedin.com/login?trk=guest_homepage-basic_nav-header-signin")
 
+        time.sleep(10)
+
         try:
             user_field = self.browser.find_element("id", "username")
             pw_field = self.browser.find_element("id", "password")
             
             # Wait for the login button to be present before interacting with it
-            WebDriverWait(self.browser, 20).until(
+            WebDriverWait(self.browser, 10).until(
                 EC.presence_of_element_located((By.XPATH, '//*[@id="organic-div"]/form/div[3]/button'))
             )
+
             login_button = self.browser.find_element("xpath", '//*[@id="organic-div"]/form/div[3]/button')
             
             user_field.send_keys(username)
+            time.sleep(0.5)
             user_field.send_keys(Keys.TAB)
-            time.sleep(2)
+            time.sleep(5)
             pw_field.send_keys(password)
-            time.sleep(2)
+            time.sleep(5)
             
             # Click the login button after ensuring it is clickable
             login_button.click()
@@ -247,61 +253,69 @@ class EasyApplyBot:
             try:
                 log.info(f"{(self.MAX_SEARCH_TIME - (time.time() - start_time)) // 60} minutes left in this search")
 
-                # sleep to make sure everything loads, add random to make us look human.
+                # Check for human verification
+                if self.is_present(self.locator["human_verification"]):  # Make sure to define this locator
+                    log.warning("Human verification detected. Please complete the verification.")
+                    while self.is_present(self.locator["human_verification"]):
+                        time.sleep(10)  # Pause and wait until the user completes verification
+
                 randoTime: float = random.uniform(1.5, 2.9)
                 log.debug(f"Sleeping for {round(randoTime, 1)}")
-                #time.sleep(randoTime)
                 self.load_page(sleep=0.5)
-
-                # LinkedIn displays the search results in a scrollable <div> on the left side, we have to scroll to its bottom
-
-                # scroll to bottom
 
                 if self.is_present(self.locator["search"]):
                     scrollresults = self.get_elements("search")
-                    #     self.browser.find_element(By.CLASS_NAME,
-                    #     "jobs-search-results-list"
-                    # )
-                    # Selenium only detects visible elements; if we scroll to the bottom too fast, only 8-9 results will be loaded into IDs list
+
+                    last_height = self.browser.execute_script("return arguments[0].scrollHeight", scrollresults[0])
+                    scrolled = False
+
+                    # Scroll while there are still new job results appearing
                     for i in range(300, 3000, 100):
                         self.browser.execute_script("arguments[0].scrollTo(0, {})".format(i), scrollresults[0])
-                    scrollresults = self.get_elements("search")
-                    #time.sleep(1)
+                        time.sleep(0.5)  # Wait for new elements to load
+                        new_height = self.browser.execute_script("return arguments[0].scrollHeight", scrollresults[0])
+                        
+                        # If no new elements are loaded, break the scroll loop
+                        if new_height == last_height:
+                            break
+                        last_height = new_height
+                        scrolled = True
 
-                # get job links, (the following are actually the job card objects)
+                    if not scrolled:
+                        log.debug("No more scrolling needed, all elements loaded.")
+
                 if self.is_present(self.locator["links"]):
                     links = self.get_elements("links")
+                    jobIDs = {}
+                    visible_links = []  
 
-                    jobIDs = {}  # {Job id: processed_status}
-
-                    # children selector is the container of the job cards on the left
                     for link in links:
-                        try:
-                            # Sometimes the 'Applied' text is inside a child element, use a more specific locator
-                            if 'Applied' not in link.text and 'Applied' not in link.get_attribute('innerHTML'):
-                                if link.text not in self.blacklist:  # checking if blacklisted
+                        if link not in visible_links:
+                            visible_links.append(link)
+                            try:
+                                applied_status = link.find_element(By.XPATH, ".//li[contains(@class, 'job-card-container__footer-item') and text()='Applied']")
+                                if applied_status.is_displayed():
+                                    log.debug("Job already applied: {}".format(link.text))
+                                    continue
+                            except NoSuchElementException:
+                                if link.text not in self.blacklist:
                                     jobID = link.get_attribute("data-job-id")
                                     if jobID == "search":
-                                        log.debug(f"Job ID not found, search keyword found instead? {link.text}")
+                                        log.debug("Job ID not found, search keyword found instead? {}".format(link.text))
                                         continue
                                     else:
                                         jobIDs[jobID] = "To be processed"
-                        except Exception as e:
-                            log.error(f"Error processing job link: {e}")
-
+                    
                     if len(jobIDs) > 0:
                         self.apply_loop(jobIDs)
 
-                    self.browser, jobs_per_page = self.next_jobs_page(
-                        position, location, jobs_per_page, experience_level=self.experience_level
-                    )
+                    self.browser, jobs_per_page = self.next_jobs_page(position, location, jobs_per_page, experience_level=self.experience_level)
                 else:
-                    self.browser, jobs_per_page = self.next_jobs_page(
-                        position, location, jobs_per_page, experience_level=self.experience_level
-                    )
+                    self.browser, jobs_per_page = self.next_jobs_page(position, location, jobs_per_page, experience_level=self.experience_level)
 
             except Exception as e:
                 print(e)
+             
     def apply_loop(self, jobIDs):
         for jobID in jobIDs:
             if jobIDs[jobID] == "To be processed":
@@ -539,7 +553,6 @@ class EasyApplyBot:
                                 submitted = True
                                 break
                             elif is_present(self.locator["easy_apply_button"]):
-                                log.info("Skipping application")
                                 submitted = False
                                 break
 
@@ -570,7 +583,7 @@ class EasyApplyBot:
         return submitted
 
     def process_questions(self):
-        time.sleep(5)
+        time.sleep(3)
 
         form = self.get_elements("fields")  # Getting form elements
 
@@ -584,12 +597,8 @@ class EasyApplyBot:
                 field = form[i]
                 question = field.text.strip()  # Ensure question text is stripped of whitespace
                 
-                # Log the extracted question to verify uniqueness
-                log.info(f"Processing question: {question}")
-                
                 # Get answer for each question individually
                 answer = self.ans_question(question.lower())  
-                log.info(f"Answer determined: {answer}")
 
             except StaleElementReferenceException:
                 log.warning(f"Element became stale: {field}, re-fetching form elements.")
@@ -599,45 +608,39 @@ class EasyApplyBot:
             try:
                 # Unselect radio buttons
                 if self.is_found_field(self.locator["radio_select"], field):
+                    # Returns a list of web elements
                     radio_buttons = self.get_child_elements(self.locator["radio_select"], field)
 
-                    for radio_button in radio_buttons:
+                    for radio_button in radio_buttons: # `radio_button` is a web element
                         self.browser.execute_script("""
-                    arguments[0].checked = false;
-                    arguments[0].dispatchEvent(new Event('change'));
-                """, radio_button)
+                            arguments[0].checked = false;
+                            arguments[0].dispatchEvent(new Event('change'));
+                        """, radio_button)
                         log.info("Radio button unselected")
 
                 # Unselect multi-select options
                 elif self.is_found_field(self.locator["multi_select"], field):
-                    # Assuming you're expecting only one select element, fetch the first element
-                    select_element = self.get_child_elements(self.locator["multi_select"], field)[0]
-                    
-                    # Find all selected options within that select element
-                    selected_options = select_element.find_elements(By.CSS_SELECTOR, "option[selected]")
+                    # Get the first and only select element
+                    select_element = self.get_child_elements(self.locator["multi_select"], field)[0]  # `select_element` is a web element
 
-                    # Unselect each selected option using JavaScript
-                    for option in selected_options:
-                        self.browser.execute_script("""
-                            arguments[0].selected = false; 
-                            arguments[0].dispatchEvent(new Event('change'));
-                        """, option)
-                        log.info("Multi-select option unselected")
+                    # Reset to the default value
+                    self.browser.execute_script("arguments[0].selectedIndex = 0; arguments[0].dispatchEvent(new Event('change'));", select_element)
+                    log.info("Multi-select reset to default value: 'Select an option'")
+
 
             except Exception as e:
                 log.error(f"Error clearing existing selections: {e}")
 
-        for i in range(len(form)):
+        time.sleep(1)
 
+        for i in range(len(form)):
             try:
                 # Attempt to re-locate the elements dynamically inside the loop
                 form = self.get_elements("fields")
                 field = form[i]
                 question = field.text.strip()  # Strip whitespace from question
                 
-                # Log the extracted question to verify uniqueness
                 log.info(f"Processing question: {question}")
-
                 answer = self.ans_question(question.lower())  # Get answer based on the current question
                 log.info(f"Answer determined: {answer}")
 
@@ -645,10 +648,14 @@ class EasyApplyBot:
                 log.warning(f"Element became stale: {field}, re-fetching form elements.")
                 continue
 
+            # Scroll the field into view before interacting
+            self.browser.execute_script("arguments[0].scrollIntoView(true);", field)
+
             # Check if input type is radio button
             if self.is_found_field(self.locator["radio_select"], field) and answer.lower() in ["yes", "no", "1", "0"]:
                 try:
                     radio_buttons = self.get_child_elements(self.locator["radio_select"], field)
+
                     if radio_buttons is None or len(radio_buttons) == 0:
                         log.error(f"No radio buttons found for question: {question}")
                         continue
@@ -665,7 +672,6 @@ class EasyApplyBot:
                             log.info(f"Radio button selected: {radio_button.get_attribute('value')}")
                             selected = True
 
-                    # Exact match not found, looking for closest answer...
                     if not selected:
                         log.info("Exact match not found, looking for closest answer...")
                         closest_match = None
@@ -675,7 +681,7 @@ class EasyApplyBot:
                                 closest_match = radio_button
 
                         if closest_match:
-                            WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(closest_match))
+                            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(closest_match))
                             self.browser.execute_script("""
                                 arguments[0].click();
                                 arguments[0].dispatchEvent(new Event('change'));
@@ -686,7 +692,7 @@ class EasyApplyBot:
                             log.warning("No suitable radio button found to select.")
                             
                 except StaleElementReferenceException:
-                    log.warning(f"Retrying due to stale element. Attempt {retry_count}/{max_retries}")
+                    log.warning(f"Retrying due to stale element.")
 
                 except Exception as e:
                     log.error(f"Radio button error for question: {question}, answer: {answer}")
@@ -694,14 +700,14 @@ class EasyApplyBot:
                 
             # Multi-select case
             elif self.is_found_field(self.locator["multi_select"], field):
-                # Retry logic with a max retry limit (optional)
                 max_retries = 5
                 retry_count = 0
                 while retry_count < max_retries:
                     try:
-                        select_element = WebDriverWait(self.browser, 3).until(
+                        select_element = WebDriverWait(self.browser, 10).until(
                             EC.presence_of_element_located(self.locator["multi_select"])
                         )
+
                         options = select_element.find_elements(By.TAG_NAME, "option")
                         for option in options:
                             if option.text.strip().lower() == answer.lower():
@@ -721,11 +727,15 @@ class EasyApplyBot:
             # Handle text input fields
             elif self.is_found_field(self.locator["text_select"], field):
                 try:
-                    text_fields = self.get_child_elements(self.locator["text_select"], field)
-                    for text_field in text_fields:
-                        text_field.clear()
-                        text_field.send_keys(answer)
-                        log.info(f"Text input field populated with: {answer}")
+                    
+                    text_field = WebDriverWait(self.browser, 10).until(
+                            EC.presence_of_element_located(self.locator["text_select"])
+                        )
+                    time.sleep(3)
+                    text_field.clear()
+                    time.sleep(0.5)
+                    text_field.send_keys(answer)
+                    log.info(f"Text input field populated with: {answer}")
                 except Exception as e:
                     log.error(f"(process_questions(1)) Text field error: {e}")
                     
@@ -750,6 +760,12 @@ class EasyApplyBot:
             answer = random.choice(choices)
         elif "do you" in question and "experience" in question:
             answer = "Yes"
+        elif "how did you hear" in question:
+            answer = "Other"
+        elif "refer" in question or "referred" in question:
+            answer = "N/A"
+        elif "why are you seeking" in question or ("why" in question and "this position"):
+            answer = "Good glassdoor reviews and the workers I talked to love their jobs"
 
         # Work authorization questions
         elif "work" in question and ("authorization" in question or "authorized" in question):
@@ -782,8 +798,10 @@ class EasyApplyBot:
             answer = "No"
 
         # Other personal questions
-        elif "sponsor" in question or "currently reside" in question:
+        elif "currently reside" in question:
             answer = "Yes"
+        elif "sponsor" in question:
+            answer = "No"
         elif ("us citizen" in question or "u.s. citizen" in question) and "clearance" in question:
             answer = "Yes"
         elif "salary" in question:
@@ -800,6 +818,7 @@ class EasyApplyBot:
             answer = "I do not wish to self-identify"
         elif "are you legally" in question:
             answer = "Yes"
+
 
         # General affirmative questions
         elif "do you" in question or "did you" in question or "have you" in question or "are you" in question:
@@ -909,4 +928,3 @@ if __name__ == '__main__':
                        experience_level=parameters.get('experience_level', [])
                        )
     bot.start_apply(positions, locations)
-    driv

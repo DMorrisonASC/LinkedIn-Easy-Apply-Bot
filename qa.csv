@@ -1995,3 +1995,205 @@ enter a decimal number larger than 0.0",1
 enter a decimal number larger than 0.0",1
 "html, css",1
 angular 13 or 16,1
+how many years of work experience do you have with postgresql?,4
+"how many years of experience you have in developing and integrating the apis?
+enter a decimal number larger than 0.0",4
+"how many years of experience you have in developing cloud based applications?
+enter a decimal number larger than 0.0",5
+how many years of full stack development experience do you have?,6
+how many years of experience you have in developing and integrating the apis?,4
+how many years of experience you have in developing cloud based applications?,3
+how many years of work experience do you have with django?,3
+"are you within 40 miles of zip 02199 ?
+are you within 40 miles of zip 02199 ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you a full stack developer ?
+are you a full stack developer ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of retail experience do you currently have?,6
+"how many years of work experience do you have with pyspark?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with workday?,4
+how many years of work experience do you have with pyspark?,4
+how many years of work experience do you have with snowflake?,6
+how many years of work experience do you have with data engineering?,4
+"are you able to be onsite in lakeland, fl?
+are you able to be onsite in lakeland, fl?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with data warehousing?,5
+"how many years of work experience do you have with data modeling?
+enter a decimal number larger than 0.0",5
+"can you go to office in johnston, ri once a week? 
+can you go to office in johnston, ri once a week?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"can you go to office in johnston, ri once a week? 
+can you go to office in johnston, ri once a week?
+required
+       select an option
+       yes
+       no",4
+"are you able to work on a w2 contract? 
+are you able to work on a w2 contract?
+required
+       select an option
+       yes
+       no",Yes
+how many years of finance experience do you currently have?,5
+"how many years of work experience do you have with aws
+how many years of work experience do you have with aws
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of work experience do you have with guidewire?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with gosu?
+enter a whole number between 0 and 99",5
+"do you have any certification in guidewire>
+do you have any certification in guidewire>
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you currently posses a us green card or are a us citizen?
+do you currently posses a us green card or are a us citizen?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you currently looking for c2c work?
+are you currently looking for c2c work?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with automation?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with citrix products?
+enter a whole number between 0 and 99",5
+"do you have experience with identity access management 
+do you have experience with identity access management
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with identity access management 
+do you have experience with identity access management
+required
+       select an option
+       yes
+       no",Yes
+"how did you hear that cai is hiring?
+how did you hear that cai is hiring?
+required
+       select an option
+       linkedin
+       indeed
+       cai careers page
+       cai referral
+       facebook
+       glassdoor
+       ziprecruiter
+       monster
+       talent.com
+       myjobhelper
+       adzuna
+       jora
+       jooble
+       handshake
+       google keyword search
+       other
+   please make a selection",Yes
+"how did you hear that cai is hiring?
+how did you hear that cai is hiring?
+required
+       select an option
+       linkedin
+       indeed
+       cai careers page
+       cai referral
+       facebook
+       glassdoor
+       ziprecruiter
+       monster
+       talent.com
+       myjobhelper
+       adzuna
+       jora
+       jooble
+       handshake
+       google keyword search
+       other",Yes
+"if referred by a cai employee, please provide their name(s)",4
+"are you pursuing a role in data engineering or related to software functions?
+are you pursuing a role in data engineering or related to software functions?
+required
+yes
+no
+please make a selection",Yes
+"please select the correct number of levels of commissioning
+please select the correct number of levels of commissioning
+required
+4
+5
+6
+7
+please make a selection",4
+"please select the correct number of levels of commissioning
+please select the correct number of levels of commissioning
+required
+4
+5
+6
+7",4
+"please use the listed options below to identify your current employment status. note: cai does not provide sponsorship at this time.
+please use the listed options below to identify your current employment status. note: cai does not provide sponsorship at this time.
+required
+us citizen
+green card holder/us permanent citizen
+canadian citizen
+mexican citizen
+other - need sponsorship
+please make a selection",Yes
+why are you seeking a new position?,Yes
+"when are you available to start a new position?
+when are you available to start a new position?
+required
+immediately
+2 weeks
+30 days
+6 weeks or longer",Yes
+"when are you available to start a new position?
+when are you available to start a new position?
+required
+immediately
+2 weeks
+30 days
+6 weeks or longer
+please make a selection",Yes
+"are you willing to work weekends if/when required by the position? (reasonable accommodations will be made for religious requirements)
+are you willing to work weekends if/when required by the position? (reasonable accommodations will be made for religious requirements)
+required
+yes
+no",Yes
