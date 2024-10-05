@@ -1708,3 +1708,223 @@ required
        select an option
        yes
        no",1
+"do you have experience working with api management applications such as ws02 or mulesoft? 
+do you have experience working with api management applications such as ws02 or mulesoft?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with azure kubernetes service (aks)?
+enter a whole number between 0 and 99",6
+"do you have an active dod secret clearance?
+do you have an active dod secret clearance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"rate your experience with ci/cd pipelines (jenkins, gitlab ci) [from 1 to 10; 1 - no experience, 10 - highly experienced]
+enter a decimal number larger than 0.0",1
+"rate your experience with version control systems e.g. git [from 1 to 10; 1 - no experience, 10 - highly experienced]
+enter a decimal number larger than 0.0",1
+"rate your experience with oauth/oidc, saml protocols [from 1 to 10; 1 - no experience, 10 - highly experienced]
+enter a decimal number larger than 0.0",1
+"rate your experience with ci/cd pipelines (jenkins, gitlab ci) [from 1 to 10; 1 - no experience, 10 - highly experienced]",1
+"rate your experience with version control systems e.g. git [from 1 to 10; 1 - no experience, 10 - highly experienced]",1
+"rate your experience with oauth/oidc, saml protocols [from 1 to 10; 1 - no experience, 10 - highly experienced]",1
+"how many years of work experience do you have with performance tuning?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with performance tuning?,4
+"are you happy to work 3 days a week onsite in miami? 
+are you happy to work 3 days a week onsite in miami?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"are you a full green card holder or us citizen? 
+are you a full green card holder or us citizen?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+how many years of work experience do you have with mobile application development?,4
+"how many years of telecommunications experience do you currently have?
+enter a whole number between 0 and 99",3
+how many years of telecommunications experience do you currently have?,5
+how many years of work experience do you have with embedded systems?,3
+"are you eligible to obtain a secret clearance?
+are you eligible to obtain a secret clearance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",1
+"how many years of work experience do you have with shopify?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with hydrogen?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with hydrogen?,6
+"how many years of work experience do you have with canvases?
+enter a whole number between 0 and 99",4
+how many years of work experience do you have with c#?,5
+"do you have an active us government issued security clearance?
+do you have an active us government issued security clearance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",I do not wish to self-identify
+"how many years of work experience do you have with cloud infrastructure?
+enter a whole number between 0 and 99",3
+"how many years of experience do you have in fintech or blockchain?
+enter a decimal number larger than 0.0",6
+"do you have experience using rust?
+do you have experience using rust?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience using rust?
+do you have experience using rust?
+required
+       select an option
+       yes
+       no",Yes
+"are you located in the greater gulfport area or are willing to relocate here prior to starting? (a full relocation package is provided)
+are you located in the greater gulfport area or are willing to relocate here prior to starting? (a full relocation package is provided)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of ibm sterling file transfer experience do you have?
+enter a decimal number larger than 0.0",3
+"are you located in the greater gulfport area or are willing to relocate here prior to starting? (a full relocation package is provided)
+are you located in the greater gulfport area or are willing to relocate here prior to starting? (a full relocation package is provided)
+required
+       select an option
+       yes
+       no",Yes
+how many years of work experience do you have with android development?,3
+"how many years of work experience do you have with qnx?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with automotive infotainment?,6
+"do you have telecommunications industry experience?
+do you have telecommunications industry experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you us citizen.
+are you us citizen.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of experience do you have as a splunk developer
+enter a decimal number larger than 0.0",6
+"how many years of experience do you have in developing advanced token-controlled splunk dashboards using simple xml, html and css.
+enter a decimal number larger than 0.0",3
+"are you us citizen.
+are you us citizen.
+required
+       select an option
+       yes
+       no",Yes
+how many years of work experience do you have with systems engineering?,5
+"how many years of work experience do you have with electronic control systems?
+enter a whole number between 0 and 99",4
+how many years of work experience do you have with microcontrollers?,5
+how many years of work experience do you have with electronic control systems?,6
+"have you completed the following level of education: doctor of philosophy?
+have you completed the following level of education: doctor of philosophy?
+required
+yes
+no
+please make a selection",Yes
+"do you have a minimum of 13 years of engineering experience in the aerospace industry? 
+do you have a minimum of 13 years of engineering experience in the aerospace industry?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"have you supported satellite or spacecraft development programs?
+have you supported satellite or spacecraft development programs?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have an active, transferable ts/sci ci poly u.s. government-issued security clearance?
+do you have an active, transferable ts/sci ci poly u.s. government-issued security clearance?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a comprehensive understanding of spacecraft subsystems such as adcs, eps, space-ground communications, c&dh, and thermal control?
+do you have a comprehensive understanding of spacecraft subsystems such as adcs, eps, space-ground communications, c&dh, and thermal control?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have in-depth knowledge of the space environment, orbital mechanics, and rigid body dynamics?
+do you have in-depth knowledge of the space environment, orbital mechanics, and rigid body dynamics?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you proficient in assembly, c++, matlab, python, and stk?
+are you proficient in assembly, c++, matlab, python, and stk?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with requirement management tools such as cameo, jama, or doors? 
+do you have experience with requirement management tools such as cameo, jama, or doors?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with testing electrical subsystems and assemblies, including thermal vacuum or random vibration and hardware-in-the-loop (hitl) testing? 
+do you have experience with testing electrical subsystems and assemblies, including thermal vacuum or random vibration and hardware-in-the-loop (hitl) testing?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you willing to travel to support business needs? 
+are you willing to travel to support business needs?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience leading and managing complex technical projects?
+do you have experience leading and managing complex technical projects?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of experience do you have with project management tools and methodologies?
+enter a decimal number larger than 0.0",4
+"have you completed the following level of education: doctor of philosophy?
+have you completed the following level of education: doctor of philosophy?
+required
+yes
+no",Yes
+how many years of work experience do you have with netapp?,5
+"how many years of work experience do you have with web content accessibility guidelines (wcag)?
+enter a whole number between 0 and 99",5

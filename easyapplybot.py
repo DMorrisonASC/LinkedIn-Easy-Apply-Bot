@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import csv
 import logging
+import traceback
 import os
 import random
 import re
@@ -176,29 +177,33 @@ class EasyApplyBot:
         return options
 
     def start_linkedin(self, username, password) -> None:
-        log.info("Logging in.....Please wait :)  ")
+        log.info("Logging in.....Please wait :)")
         self.browser.get("https://www.linkedin.com/login?trk=guest_homepage-basic_nav-header-signin")
+
         try:
-            user_field = self.browser.find_element("id","username")
-            pw_field = self.browser.find_element("id","password")
-            login_button = self.browser.find_element("xpath",
-                        '//*[@id="organic-div"]/form/div[3]/button')
+            user_field = self.browser.find_element("id", "username")
+            pw_field = self.browser.find_element("id", "password")
+            
+            # Wait for the login button to be present before interacting with it
+            WebDriverWait(self.browser, 20).until(
+                EC.presence_of_element_located((By.XPATH, '//*[@id="organic-div"]/form/div[3]/button'))
+            )
+            login_button = self.browser.find_element("xpath", '//*[@id="organic-div"]/form/div[3]/button')
+            
             user_field.send_keys(username)
             user_field.send_keys(Keys.TAB)
             time.sleep(2)
             pw_field.send_keys(password)
             time.sleep(2)
+            
+            # Click the login button after ensuring it is clickable
             login_button.click()
             time.sleep(20)
-            # if self.is_present(self.locator["2fa_oneClick"]):
-            #     oneclick_auth = self.browser.find_element(by='id', value='reset-password-submit-button')
-            #     if oneclick_auth is not None:
-            #         log.info("additional authentication required, sleep for 15 seconds so you can do that")
-            #         time.sleep(15)
-            # else:
-            #     time.sleep()
+
         except TimeoutException:
             log.info("TimeoutException! Username/password field or login button not found")
+        except NoSuchElementException as e:
+            log.error(f"Element not found: {e}")
 
     def fill_data(self) -> None:
         self.browser.set_window_size(1, 1)
@@ -565,7 +570,7 @@ class EasyApplyBot:
         return submitted
 
     def process_questions(self):
-        time.sleep(3)
+        time.sleep(5)
 
         form = self.get_elements("fields")  # Getting form elements
 
@@ -632,34 +637,30 @@ class EasyApplyBot:
             if self.is_found_field(self.locator["radio_select"], field) and answer.lower() in ["yes", "no", "1", "0"]:
                 try:
                     radio_buttons = self.get_child_elements(self.locator["radio_select"], field)
-                    selected = False  # Flag to check if the radio button was selected
-                    
-                    # Try to select the exact match first
+                    if radio_buttons is None or len(radio_buttons) == 0:
+                        log.error(f"No radio buttons found for question: {question}")
+                        continue
+
+                    selected = False
+
                     for radio_button in radio_buttons:
                         if radio_button.get_attribute('value').lower() == answer.lower():
-                            WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(radio_button))
+                            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(radio_button))
                             self.browser.execute_script("""
                                 arguments[0].click();
                                 arguments[0].dispatchEvent(new Event('change'));
                             """, radio_button)
                             log.info(f"Radio button selected: {radio_button.get_attribute('value')}")
                             selected = True
-                            break
 
-                    # If not selected, find the closest match
+                    # Exact match not found, looking for closest answer...
                     if not selected:
                         log.info("Exact match not found, looking for closest answer...")
                         closest_match = None
-                        closest_value = ""
-                        
                         for radio_button in radio_buttons:
                             radio_value = radio_button.get_attribute('value').lower()
-                            
-                            # Check for closest match
-                            if "yes" in radio_value or "no" in radio_value:  # Add other keywords as necessary
-                                closest_value = radio_value
+                            if "yes" in radio_value or "no" in radio_value:
                                 closest_match = radio_button
-                                break  # Select the first closest match found
 
                         if closest_match:
                             WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(closest_match))
@@ -667,21 +668,26 @@ class EasyApplyBot:
                                 arguments[0].click();
                                 arguments[0].dispatchEvent(new Event('change'));
                             """, closest_match)
-                            log.info(f"Closest radio button selected: {closest_value}")
+                            log.info(f"Closest radio button selected: {closest_match.get_attribute('value')}")
+                            
                         else:
                             log.warning("No suitable radio button found to select.")
+                            
+                except StaleElementReferenceException:
+                    log.warning(f"Retrying due to stale element. Attempt {retry_count}/{max_retries}")
 
                 except Exception as e:
-                    log.error(f"Radio button error: {e}")
-
+                    log.error(f"Radio button error for question: {question}, answer: {answer}")
+                    log.error(traceback.format_exc())  # Full traceback for better debugging
+                
             # Multi-select case
             elif self.is_found_field(self.locator["multi_select"], field):
                 # Retry logic with a max retry limit (optional)
-                max_retries = 3
+                max_retries = 5
                 retry_count = 0
                 while retry_count < max_retries:
                     try:
-                        select_element = WebDriverWait(self.browser, 2).until(
+                        select_element = WebDriverWait(self.browser, 3).until(
                             EC.presence_of_element_located(self.locator["multi_select"])
                         )
                         options = select_element.find_elements(By.TAG_NAME, "option")
@@ -694,7 +700,9 @@ class EasyApplyBot:
                     except StaleElementReferenceException:
                         retry_count += 1
                         log.warning(f"Retrying due to stale element. Attempt {retry_count}/{max_retries}")
+                    
                     except Exception as e:
+                        retry_count += 1
                         log.error(f"Multi-select error: {e}")
                         break
 
@@ -712,9 +720,11 @@ class EasyApplyBot:
             else:
                 log.info(f"Unable to determine field type for question: {question}, moving to next field.")
  
+ 
     def ans_question(self, question):  # refactor this to an ans.yaml file
         answer = None
         question = question.lower().strip()
+        choices = ["6", "5", "4", "3"]
 
         # English proficiency-related questions
         if "english" in question:
@@ -725,7 +735,7 @@ class EasyApplyBot:
 
         # Experience-related questions
         elif "how many" in question and "experience" in question:
-            answer = "6"
+            answer = random.choice(choices)
         elif "do you" in question and "experience" in question:
             answer = "Yes"
 
@@ -736,6 +746,12 @@ class EasyApplyBot:
             elif "status" in question:
                 answer = "U.S Citizen"
         elif "W2" in question:
+            answer = "Yes"
+        elif ("eligible" in question or "able" in question) and "clearance" in question:
+            answer = "Yes"
+        elif ("have" in question or "obtain" in question or "obtained" in question) and "clearance" in question:
+            answer = "Yes"
+        elif ("US" in question or "U.S." in question or "green" in question ) and ("citizen" in question or "card" in question):
             answer = "Yes"
 
         # Disability and drug test-related questions
@@ -774,7 +790,7 @@ class EasyApplyBot:
             answer = "Yes"
 
         # General affirmative questions
-        elif "do you" in question or "did you" in question or "have you" in question:
+        elif "do you" in question or "did you" in question or "have you" in question or "are you" in question:
             answer = "Yes"
 
         # Default case for unanswered questions
@@ -881,3 +897,4 @@ if __name__ == '__main__':
                        experience_level=parameters.get('experience_level', [])
                        )
     bot.start_apply(positions, locations)
+    driv
