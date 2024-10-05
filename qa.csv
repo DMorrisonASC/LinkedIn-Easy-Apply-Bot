@@ -2197,3 +2197,75 @@ are you willing to work weekends if/when required by the position? (reasonable a
 required
 yes
 no",Yes
+how many years of work experience do you have with scala?,3
+how many years of work experience do you have with hadoop?,5
+"how many years of work experience do you have with adobe spark?
+enter a whole number between 0 and 99",6
+"do you now or in the future require work authorization/sponsorship?
+do you now or in the future require work authorization/sponsorship?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of experience do you have with data engineering?
+enter a decimal number larger than 0.0",4
+"have you contributed to the development of a fda or clia-regulated device/instrument?
+have you contributed to the development of a fda or clia-regulated device/instrument?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a minimum 3 years relevant experience specifying, building, and testing electromechanical instrumentation? (doctorate degree substitutes for 2 years experience)
+do you have a minimum 3 years relevant experience specifying, building, and testing electromechanical instrumentation? (doctorate degree substitutes for 2 years experience)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of experience do you have working on data warehousing, etl processes, sql and manage data security through tools.
+enter a decimal number larger than 0.0",3
+"how many years of work experience do you have with vast?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with risc-v?
+enter a whole number between 0 and 99",5
+"how many years of experience do you have with linux kernel drivers development?
+enter a decimal number larger than 0.0",5
+"how many years of experience do you have with embedded software?
+enter a decimal number larger than 0.0",5
+"are you a u.s. citizen?
+are you a u.s. citizen?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with or interest in working at an early stage startup?
+do you have experience with or interest in working at an early stage startup?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"can you troubleshoot a hitl system?
+can you troubleshoot a hitl system?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"do you have experience with software defined radios (sdrs)?
+do you have experience with software defined radios (sdrs)?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a proven track record of offering technical support and guidance to customers during installation and deployment processes for embedded systems?
+do you have a proven track record of offering technical support and guidance to customers during installation and deployment processes for embedded systems?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes

@@ -664,7 +664,7 @@ class EasyApplyBot:
 
                     for radio_button in radio_buttons:
                         if radio_button.get_attribute('value').lower() == answer.lower():
-                            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(radio_button))
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(radio_button))
                             self.browser.execute_script("""
                                 arguments[0].click();
                                 arguments[0].dispatchEvent(new Event('change'));
@@ -681,7 +681,7 @@ class EasyApplyBot:
                                 closest_match = radio_button
 
                         if closest_match:
-                            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(closest_match))
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(closest_match))
                             self.browser.execute_script("""
                                 arguments[0].click();
                                 arguments[0].dispatchEvent(new Event('change'));
@@ -689,7 +689,13 @@ class EasyApplyBot:
                             log.info(f"Closest radio button selected: {closest_match.get_attribute('value')}")
                             
                         else:
-                            log.warning("No suitable radio button found to select.")
+                            log.warning("No suitable radio button found to select. Picking first option")
+                            firstOption = radio_buttons[0]
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(firstOption))
+                            self.browser.execute_script("""
+                                arguments[0].click();
+                                arguments[0].dispatchEvent(new Event('change'));
+                            """, firstOption)
                             
                 except StaleElementReferenceException:
                     log.warning(f"Retrying due to stale element.")
@@ -704,16 +710,24 @@ class EasyApplyBot:
                 retry_count = 0
                 while retry_count < max_retries:
                     try:
-                        select_element = WebDriverWait(self.browser, 10).until(
+                        select_element = WebDriverWait(field, 10).until(
                             EC.presence_of_element_located(self.locator["multi_select"])
                         )
+
+                        foundChoice = False
 
                         options = select_element.find_elements(By.TAG_NAME, "option")
                         for option in options:
                             if option.text.strip().lower() == answer.lower():
                                 option.click()
+                                foundChoice = True
                                 log.info(f"Option selected: {option.text}")
                                 break
+
+                        if foundChoice == False:
+                            options[1].click()
+                            log.info(f"1st Option selected: {options[1].text}")
+
                         break  # Exit the loop if successful
                     except StaleElementReferenceException:
                         retry_count += 1
@@ -728,7 +742,7 @@ class EasyApplyBot:
             elif self.is_found_field(self.locator["text_select"], field):
                 try:
                     
-                    text_field = WebDriverWait(self.browser, 10).until(
+                    text_field = WebDriverWait(field, 10).until(
                             EC.presence_of_element_located(self.locator["text_select"])
                         )
                     time.sleep(3)
