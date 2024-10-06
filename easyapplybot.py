@@ -266,50 +266,39 @@ class EasyApplyBot:
                 if self.is_present(self.locator["search"]):
                     scrollresults = self.get_elements("search")
 
-                    last_height = self.browser.execute_script("return arguments[0].scrollHeight", scrollresults[0])
-                    scrolled = False
-
-                    # Scroll while there are still new job results appearing
-                    for i in range(300, 3000, 100):
+                    for i in range(300, 10000, 100):
                         self.browser.execute_script("arguments[0].scrollTo(0, {})".format(i), scrollresults[0])
                         time.sleep(0.5)  # Wait for new elements to load
-                        new_height = self.browser.execute_script("return arguments[0].scrollHeight", scrollresults[0])
-                        
-                        # If no new elements are loaded, break the scroll loop
-                        if new_height == last_height:
-                            break
-                        last_height = new_height
-                        scrolled = True
-
-                    if not scrolled:
-                        log.debug("No more scrolling needed, all elements loaded.")
 
                 if self.is_present(self.locator["links"]):
                     links = self.get_elements("links")
+                    
                     jobIDs = {}
-                    visible_links = []  
 
                     for link in links:
-                        if link not in visible_links:
-                            visible_links.append(link)
-                            try:
-                                applied_status = link.find_element(By.XPATH, ".//li[contains(@class, 'job-card-container__footer-item') and normalize-space(text())='Applied']")
-                                if applied_status.is_displayed():
-                                    log.debug("Job already applied: {}".format(link.text))
+
+                        try:
+                            # Look for the "Applied" status within the footer section of the job card
+                            applied_status = link.find_element(By.XPATH, ".//div/ul/li[contains(@class, 'job-card-container__footer-job-state') and normalize-space(.)='Applied']")
+
+                            if applied_status.is_displayed():
+                                log.debug("Job already applied: {}".format(link.text))
+                                continue  # Skip this job card if it's already applied
+
+                        except NoSuchElementException:
+                            if link.text not in self.blacklist:
+                                jobID = link.get_attribute("data-job-id")
+                                if jobID == "search":
+                                    log.debug("Job ID not found, search keyword found instead? {}".format(link.text))
                                     continue
-                            except NoSuchElementException:
-                                if link.text not in self.blacklist:
-                                    jobID = link.get_attribute("data-job-id")
-                                    if jobID == "search":
-                                        log.debug("Job ID not found, search keyword found instead? {}".format(link.text))
-                                        continue
-                                    else:
-                                        jobIDs[jobID] = "To be processed"
+                                else:
+                                    jobIDs[jobID] = "To be processed"
                     
                     if len(jobIDs) > 0:
                         self.apply_loop(jobIDs)
 
                     self.browser, jobs_per_page = self.next_jobs_page(position, location, jobs_per_page, experience_level=self.experience_level)
+
                 else:
                     self.browser, jobs_per_page = self.next_jobs_page(position, location, jobs_per_page, experience_level=self.experience_level)
 
@@ -337,9 +326,7 @@ class EasyApplyBot:
 
         # get easy apply button
         button = self.get_easy_apply_button()
-        # 
-
-
+    
         # word filter to skip positions not wanted
         if button is not False:
             if any(word in self.browser.title for word in blackListTitles):
@@ -437,6 +424,25 @@ class EasyApplyBot:
         return EasyApplyButton
 
     def fill_out_fields(self):
+        try:
+                # Locate the modal container first
+                modal_container = WebDriverWait(self.browser, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "div.artdeco-modal.artdeco-modal--layer-default"))
+                )
+
+                log.info("Modal is present.")
+
+                # Now locate the continue button within the modal
+                continue_btn = WebDriverWait(modal_container, 10).until(
+                    EC.presence_of_element_located(self.locator["continue_applying"])
+                )
+                continue_btn.click()
+
+                log.info("Clicked 'Continue' inside the modal.")
+                
+        except Exception as e:
+            log.error(f"Couldn't continue or button never appeared. Error: {e}")
+
         fields = self.browser.find_elements(By.CLASS_NAME, "jobs-easy-apply-form-section__grouping")
         for field in fields:
 

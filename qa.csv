@@ -3097,3 +3097,21 @@ required
 yes
 no",4
 how many years of work experience do you have with r (programming language)?,4
+"how many years of work experience do you have with netsuite?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with apache ant?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with perl?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with hibernate?
+enter a whole number between 0 and 99",3
+"are you willing to relocate to anywhere in the u.s.?
+are you willing to relocate to anywhere in the u.s.?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with wms implementations?,3
+"how many years of work experience do you have with warehouse management systems?
+enter a whole number between 0 and 99",6
