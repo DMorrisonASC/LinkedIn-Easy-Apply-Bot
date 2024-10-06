@@ -293,7 +293,7 @@ class EasyApplyBot:
                         if link not in visible_links:
                             visible_links.append(link)
                             try:
-                                applied_status = link.find_element(By.XPATH, ".//li[contains(@class, 'job-card-container__footer-item') and text()='Applied']")
+                                applied_status = link.find_element(By.XPATH, ".//li[contains(@class, 'job-card-container__footer-item') and normalize-space(text())='Applied']")
                                 if applied_status.is_displayed():
                                     log.debug("Job already applied: {}".format(link.text))
                                     continue
