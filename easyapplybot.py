@@ -110,6 +110,7 @@ class EasyApplyBot:
 
         self.locator = {
             "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
+            "continue_applying": (By.XPATH, "//button[.//span[contains(text(), 'Continue applying')]]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -124,6 +125,7 @@ class EasyApplyBot:
             "radio_select": (By.XPATH, ".//input[starts-with(normalize-space(@id), 'urn:li:fsd_formElement:urn:li:jobs_applyformcommon_easyApplyFormElement:') and @type='radio' and @value='Yes']"),
             "multi_select": (By.XPATH, ".//select[starts-with(normalize-space(@id), 'text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @required='']"),
             "text_select": (By.XPATH, ".//input[starts-with(@id, 'single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @type='text']"),
+            "input_select": (By.XPATH, ".//fieldset[@id='radio-button-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4023480854-6612340514-multipleChoice']//input[@data-test-text-selectable-option__input]"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
         }
@@ -266,7 +268,7 @@ class EasyApplyBot:
                 if self.is_present(self.locator["search"]):
                     scrollresults = self.get_elements("search")
 
-                    for i in range(300, 10000, 100):
+                    for i in range(300, 8000, 100):
                         self.browser.execute_script("arguments[0].scrollTo(0, {})".format(i), scrollresults[0])
                         time.sleep(0.5)  # Wait for new elements to load
 
@@ -425,20 +427,20 @@ class EasyApplyBot:
 
     def fill_out_fields(self):
         try:
-                # Locate the modal container first
-                modal_container = WebDriverWait(self.browser, 10).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, "div.artdeco-modal.artdeco-modal--layer-default"))
-                )
+            # Locate the modal container first
+            modal_container = WebDriverWait(self.browser, 6).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div.artdeco-modal.artdeco-modal--layer-default"))
+            )
 
-                log.info("Modal is present.")
+            log.info("Modal is present.")
 
-                # Now locate the continue button within the modal
-                continue_btn = WebDriverWait(modal_container, 10).until(
-                    EC.presence_of_element_located(self.locator["continue_applying"])
-                )
-                continue_btn.click()
+            # Now locate the continue button within the modal
+            continue_btn = WebDriverWait(modal_container, 10).until(
+                EC.presence_of_element_located(self.locator["continue_applying"])
+            )
+            continue_btn.click()
 
-                log.info("Clicked 'Continue' inside the modal.")
+            log.info("Clicked 'Continue' inside the modal.")
                 
         except Exception as e:
             log.error(f"Couldn't continue or button never appeared. Error: {e}")
@@ -758,9 +760,56 @@ class EasyApplyBot:
                     log.info(f"Text input field populated with: {answer}")
                 except Exception as e:
                     log.error(f"(process_questions(1)) Text field error: {e}")
-                    
+
+            # Handle fieldset fields
+            elif self.is_found_field(self.locator["input_select"], field):  # Adjust options as needed
+                try:
+                    select_elements = self.get_child_elements(self.locator["input_select"], field)
+
+                    if select_elements is None or len(select_elements) == 0:
+                        log.error(f"No select elements found for question: {question}")
+                        continue
+
+                    selected = False
+
+                    for select_element in select_elements:
+                        if select_element.get_attribute('value').lower() == answer.lower():
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(select_element))
+                            self.browser.execute_script("""arguments[0].selected = true;""", select_element)
+                            log.info(f"Select element chosen: {select_element.get_attribute('value')}")
+                            selected = True
+                            break  # Exit loop once the option is selected
+
+                    if not selected:
+                        log.info("Exact match not found, looking for closest answer...")
+                        closest_match = None
+                        for select_element in select_elements:
+                            select_value = select_element.get_attribute('value').lower()
+                            if "option1" in select_value or "option2" in select_value or "option3" in select_value:  # Adjust as needed
+                                closest_match = select_element
+                                break
+
+                        if closest_match:
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(closest_match))
+                            self.browser.execute_script("""arguments[0].selected = true;""", closest_match)
+                            log.info(f"Closest select element chosen: {closest_match.get_attribute('value')}")
+                        else:
+                            log.warning("No suitable select option found. Picking first option")
+                            firstOption = select_elements[0]
+                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(firstOption))
+                            self.browser.execute_script("""arguments[0].selected = true;""", firstOption)
+                            
+                except StaleElementReferenceException:
+                    log.warning(f"Retrying due to stale element.")
+
+                except Exception as e:
+                    log.error(f"Select element error for question: {question}, answer: {answer}")
+                    log.error(traceback.format_exc())  # Full traceback for better debugging
+
             else:
                 log.info(f"Unable to determine field type for question: {question}, moving to next field.")
+
+
 
  
     def ans_question(self, question):  # refactor this to an ans.yaml file

@@ -3115,3 +3115,22 @@ required
 how many years of work experience do you have with wms implementations?,3
 "how many years of work experience do you have with warehouse management systems?
 enter a whole number between 0 and 99",6
+"do you have 4+ years of web development experience?
+do you have 4+ years of web development experience?
+required
+yes
+no
+please make a selection",Yes
+"do you have 4+ years of web development experience?
+do you have 4+ years of web development experience?
+required
+yes
+no",Yes
+"h1b transfer
+legally authorized
+need sponsorship
+opt-ead
+tn visa
+to be determined
+us citizen
+please make a selection",No
