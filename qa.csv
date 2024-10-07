@@ -3377,3 +3377,46 @@ by checking this box, you will declare that you read and understand the segula t
 required
 i agree terms & conditions
 select checkbox to proceed",4
+"by checking this box, you will declare that you read and understand the segula technologies privacy policy, and the smartrecruiters privacy policy and smartrecruiters  terms of use.
+by checking this box, you will declare that you read and understand the segula technologies, and the smartrecruitersand smartrecruiters.
+required
+i agree terms & conditions",4
+how many years of work experience do you have with shopify?,3
+"how many years of work experience do you have with rust (programming language)?
+enter a whole number between 0 and 99",3
+"what is your level of proficiency in english?
+what is your level of proficiency in english?
+required
+       select an option
+       none
+       conversational
+       professional
+       native or bilingual",Native
+"did you complete a 4-year bachelor's degree in the united states? 
+did you complete a 4-year bachelor's degree in the united states?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have ehana experience?
+do you have ehana experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"have you worked on the new versions of bw
+have you worked on the new versions of bw
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience developing the overall design of sap business warehouses/ehana?
+do you have experience developing the overall design of sap business warehouses/ehana?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
