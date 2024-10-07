@@ -184,14 +184,14 @@ class EasyApplyBot:
         log.info("Logging in.....Please wait :)")
         self.browser.get("https://www.linkedin.com/login?trk=guest_homepage-basic_nav-header-signin")
 
-        time.sleep(10)
+        time.sleep(2)
 
         try:
             user_field = self.browser.find_element("id", "username")
             pw_field = self.browser.find_element("id", "password")
             
             # Wait for the login button to be present before interacting with it
-            WebDriverWait(self.browser, 10).until(
+            WebDriverWait(self.browser, 20).until(
                 EC.presence_of_element_located((By.XPATH, '//*[@id="organic-div"]/form/div[3]/button'))
             )
 
@@ -255,11 +255,11 @@ class EasyApplyBot:
             try:
                 log.info(f"{(self.MAX_SEARCH_TIME - (time.time() - start_time)) // 60} minutes left in this search")
 
-                # Check for human verification
-                if self.is_present(self.locator["human_verification"]):  # Make sure to define this locator
-                    log.warning("Human verification detected. Please complete the verification.")
-                    while self.is_present(self.locator["human_verification"]):
-                        time.sleep(10)  # Pause and wait until the user completes verification
+                # # Check for human verification
+                # if self.is_present(self.locator["human_verification"]):  # Make sure to define this locator
+                #     log.warning("Human verification detected. Please complete the verification.")
+                #     while self.is_present(self.locator["human_verification"]):
+                #         time.sleep(10)  # Pause and wait until the user completes verification
 
                 randoTime: float = random.uniform(1.5, 2.9)
                 log.debug(f"Sleeping for {round(randoTime, 1)}")
@@ -282,10 +282,7 @@ class EasyApplyBot:
                         try:
                             # Look for the "Applied" status within the footer section of the job card
                             applied_status = link.find_element(By.XPATH, ".//div/ul/li[contains(@class, 'job-card-container__footer-job-state') and normalize-space(.)='Applied']")
-
-                            if applied_status.is_displayed():
-                                log.debug("Job already applied: {}".format(link.text))
-                                continue  # Skip this job card if it's already applied
+                            log.debug("Job already applied: {}".format(link.text))
 
                         except NoSuchElementException:
                             if link.text not in self.blacklist:
@@ -315,7 +312,7 @@ class EasyApplyBot:
                     log.info(f"Applied to {jobID}")
                 else:
                     log.info(f"Failed to apply to {jobID}")
-                jobIDs[jobID] == applied
+                del jobIDs[jobID]
 
     def apply_to_job(self, jobID):
         # #self.avoid_lock() # annoying

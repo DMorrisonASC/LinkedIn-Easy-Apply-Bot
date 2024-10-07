@@ -3134,3 +3134,246 @@ tn visa
 to be determined
 us citizen
 please make a selection",No
+"h1b transfer
+legally authorized
+need sponsorship
+opt-ead
+tn visa
+to be determined
+us citizen",No
+"how many years of frontend software developer experience do you have?
+enter a decimal number larger than 0.0",6
+"how many years of react.js experience do you have?
+enter a decimal number larger than 0.0",6
+"do you have medical device or pharmaceutical experience?
+do you have medical device or pharmaceutical experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with wordpress?,5
+"how many years of work experience do you have with c (programming language)?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with care management?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with trizetto?
+enter a whole number between 0 and 99",5
+"do you have facets development experience?
+do you have facets development experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have jiva (care management) software experience?
+do you have jiva (care management) software experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+enter a whole number larger than 0,4
+"how many years of work experience do you have with .net in azure?
+enter a whole number between 0 and 99",6
+"how many years of medical equipment manufacturing experience do you currently have?
+enter a whole number between 0 and 99",3
+"this is an onsite position located in gray, maine (about 20 mins. outside of portland, me). do you live in maine, have plans or willing to relocate to the area?
+this is an onsite position located in gray, maine (about 20 mins. outside of portland, me). do you live in maine, have plans or willing to relocate to the area?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you a us citizen, us national, lawful permanent resident, asylee or refugee admitted to the us? (required as we are registered with the united states department of state as itar registered)
+are you a us citizen, us national, lawful permanent resident, asylee or refugee admitted to the us? (required as we are registered with the united states department of state as itar registered)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with tibco?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with ibm cloud?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with sap hana?
+enter a whole number between 0 and 99",5
+"do you have at least 1 year experience with ibm cloud pak for data (cp4d) watson query tool with api handling?
+do you have at least 1 year experience with ibm cloud pak for data (cp4d) watson query tool with api handling?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have a u.s. citizenship?
+do you have a u.s. citizenship?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"in addition to tibco, what other 2 to 3 data visualization tools have you used?
+in addition to tibco, what other 2 to 3 data visualization tools have you used?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with informix?
+enter a whole number between 0 and 99",6
+"are you based in the us?
+are you based in the us?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with cisco meraki?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with proofpoint?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with crowdstrike falcon?
+enter a whole number between 0 and 99",4
+"do you have the following license or certification: microsoft certified systems engineer (mcse)?
+do you have the following license or certification: microsoft certified systems engineer (mcse)?
+required
+yes
+no
+please make a selection",Yes
+"do you have the following license or certification: cisco certified network associate voice (ccna)?
+do you have the following license or certification: cisco certified network associate voice (ccna)?
+required
+yes
+no
+please make a selection",Yes
+how many years of work experience do you have with active directory?,4
+"do you have the following license or certification: microsoft certified systems engineer (mcse)?
+do you have the following license or certification: microsoft certified systems engineer (mcse)?
+required
+yes
+no",Yes
+"do you have the following license or certification: cisco certified network associate voice (ccna)?
+do you have the following license or certification: cisco certified network associate voice (ccna)?
+required
+yes
+no",Yes
+how many years of work experience do you have using full-stack development?,3
+"what is your university grade point average (4.0 gpa scale)?
+enter a decimal number between 0.0 and 5.0",4
+"are you available for work in our syracuse, ny headquarters?
+are you available for work in our syracuse, ny headquarters?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with office 365?,6
+how many years of work experience do you have with sharepoint?,3
+"how many years of work experience do you have with microsoft 365?
+enter a whole number between 0 and 99",6
+"are you able to work to white plains, ny on a hybrid work setup?
+are you able to work to white plains, ny on a hybrid work setup?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"this role is only on w2, cannot work on c2c and we do not accept referrals. please confirm that you agree on working on our w2
+this role is only on w2, cannot work on c2c and we do not accept referrals. please confirm that you agree on working on our w2
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",N/A
+"do you have 3+ years experience as a react native developer?
+do you have 3+ years experience as a react native developer?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you now or in the future require visa sponsorship or transfer?
+do you now or in the future require visa sponsorship or transfer?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"do you have 3+ years as a mobile developer, using react native?
+do you have 3+ years as a mobile developer, using react native?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with electronic medical record (emr)?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with epic systems?,6
+"are you comfortable to work on w2
+are you comfortable to work on w2
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with cybersecurity?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with cloud security?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with kotlin?,5
+"how many years of professional native android experience do you have?
+enter a decimal number larger than 0.0",4
+"have you built android applications from scratch?
+have you built android applications from scratch?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"will you now or in the future require reveal technology to file a petition or application for employment-based visa status on your behalf to begin or continue employment with our company?
+will you now or in the future require reveal technology to file a petition or application for employment-based visa status on your behalf to begin or continue employment with our company?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of opensource experience do you have? i.e. public contributions on github
+enter a decimal number larger than 0.0",3
+"how many years of transportation, logistics, supply chain and storage experience do you currently have?
+enter a whole number between 0 and 99",4
+how many years of work experience do you have with data analytics?,4
+"how many years of work experience do you have with autocad?
+enter a whole number between 0 and 99",5
+"are you open to relocation to central florida, if applicable?
+are you open to relocation to central florida, if applicable?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"what is your target salary range?
+enter a decimal number larger than 0.0","60,000"
+"how many years of transportation, logistics, supply chain and storage experience do you currently have?",6
+how many years of work experience do you have with autocad?,6
+"are you open to relocation to central florida, if applicable?
+are you open to relocation to central florida, if applicable?
+required
+       select an option
+       yes
+       no",Yes
+what is your target salary range?,"60,000"
+"how many years of work experience do you have with angular?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with .net apis?,5
+"this industry often requires longer hours. will you be able to accommodate extended hours to meet release deadlines?
+this industry often requires longer hours. will you be able to accommodate extended hours to meet release deadlines?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"by checking this box, you will declare that you read and understand the segula technologies privacy policy, and the smartrecruiters privacy policy and smartrecruiters  terms of use.
+by checking this box, you will declare that you read and understand the segula technologies, and the smartrecruitersand smartrecruiters.
+required
+i agree terms & conditions
+select checkbox to proceed",4
