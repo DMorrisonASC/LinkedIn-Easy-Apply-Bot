@@ -3564,3 +3564,101 @@ required
    please enter a valid answer",Yes
 "how many years of work experience do you have with .net core?
 enter a whole number between 0 and 99",5
+"can you do hybrid from any of these locations?: ca, tx, tn, in, oh?
+can you do hybrid from any of these locations?: ca, tx, tn, in, oh?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"do you have experience with ci/cd? mentioned in your resume?
+do you have experience with ci/cd? mentioned in your resume?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience with python? mentioned in your resume?
+do you have experience with python? mentioned in your resume?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with apriso based mes solution?
+enter a decimal number larger than 0.0",4
+how many years of work experience do you have with tensorflow?,6
+how many years of work experience do you have with pytorch?,6
+"need to be on w2 - can you work on w2
+need to be on w2 - can you work on w2
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of work experience do you have with microsoft fabric?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with azure data factory?,5
+"how many years of work experience do you have with interface development and integration?
+enter a decimal number larger than 0.0",5
+"how many years of work experience do you have with epic system?
+enter a decimal number larger than 0.0",5
+"how many years of work experience do you have with sql database?
+enter a decimal number larger than 0.0",6
+"how many years of work experience do you have with mirth or iguana or rhapsody?
+enter a decimal number larger than 0.0",5
+"do you've epic interface bridge certification? 
+do you've epic interface bridge certification?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with javascript?
+enter a decimal number larger than 0.0",4
+"do you've work experience with hl7 healthcare standards? 
+do you've work experience with hl7 healthcare standards?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"this is an unpaid internship program which lasts for 12 weeks. are you comfortable in taking it up ?
+this is an unpaid internship program which lasts for 12 weeks. are you comfortable in taking it up ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with microsoft dynamics nav?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with objective-c?
+enter a whole number between 0 and 99",5
+"are you willing to work irving, tx / jacksonville, fl / jersey city, nj ?(onsite) any one location 
+are you willing to work irving, tx / jacksonville, fl / jersey city, nj ?(onsite) any one location
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience payment card merchant domain ?
+do you have experience payment card merchant domain ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have pyspark, python, bigdata – hive, sql, teradata?
+do you have pyspark, python, bigdata – hive, sql, teradata?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"only gc and usc 
+only gc and usc
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4

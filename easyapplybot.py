@@ -110,7 +110,7 @@ class EasyApplyBot:
 
         self.locator = {
             "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
-            "continue_applying": (By.XPATH, ".//button[contains(text(), 'Continue applying')]"),
+            "continue_applying": (By.XPATH, "//button[.//span[contains(text(), 'Continue applying')]]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -434,15 +434,15 @@ class EasyApplyBot:
 
     def fill_out_fields(self):
         try:
-            # Locate the modal container first
+            # Locate the modal container with aria-labelledby="header"
             modal_container = WebDriverWait(self.browser, 6).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "div.artdeco-modal.artdeco-modal--layer-default"))
+                EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'artdeco-modal--layer-default') and @aria-labelledby='header']"))
             )
 
             log.info("Modal is present.")
 
             # Now locate the continue button within the modal
-            continue_btn = WebDriverWait(modal_container, 10).until(
+            continue_btn = WebDriverWait(self.browser, 10).until(
                 EC.presence_of_element_located(self.locator["continue_applying"])
             )
             continue_btn.click()
@@ -960,18 +960,32 @@ class EasyApplyBot:
         time.sleep(0.5)
         pyautogui.press('esc')
 
-    def next_jobs_page(self, position, location, jobs_per_page, experience_level=[]):
+    def next_jobs_page(self, position, location, jobs_per_page, experience_level=[], time_filter="24 hours"):
         # Construct the experience level part of the URL
         experience_level_str = ",".join(map(str, experience_level)) if experience_level else ""
         experience_level_param = f"&f_E={experience_level_str}" if experience_level_str else ""
+
+        # Construct the time filter part of the URL
+        if time_filter == "24 hours":
+            time_posted_param = "&f_TPR=r86400"  # Last 24 hours
+        elif time_filter == "past week":
+            time_posted_param = "&f_TPR=r604800"  # Last week
+        elif time_filter == "past month":
+            time_posted_param = "&f_TPR=r2592000"  # Last month
+        else:
+            time_posted_param = ""  # No filter (Any time)
+
         self.browser.get(
-            # URL for jobs page
+            # URL for jobs page with Easy Apply, position, location, and time filter
             "https://www.linkedin.com/jobs/search/?f_LF=f_AL&keywords=" +
-            position + location + "&start=" + str(jobs_per_page) + experience_level_param)
-        #self.avoid_lock()
-        log.info("Loading next job page?")
+            position + location + "&start=" + str(jobs_per_page) + experience_level_param + time_posted_param
+        )
+
+        log.info(f"Loading next job page with time filter: {time_filter}")
         self.load_page()
         return (self.browser, jobs_per_page)
+
+
 
     # def finish_apply(self) -> None:
     #     self.browser.close()
