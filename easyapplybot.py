@@ -110,7 +110,7 @@ class EasyApplyBot:
 
         self.locator = {
             "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
-            "continue_applying": (By.XPATH, "//button[.//span[contains(text(), 'Continue applying')]]"),
+            "continue_applying": (By.XPATH, ".//button[contains(text(), 'Continue applying')]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -125,9 +125,13 @@ class EasyApplyBot:
             "radio_select": (By.XPATH, ".//input[starts-with(normalize-space(@id), 'urn:li:fsd_formElement:urn:li:jobs_applyformcommon_easyApplyFormElement:') and @type='radio' and @value='Yes']"),
             "multi_select": (By.XPATH, ".//select[starts-with(normalize-space(@id), 'text-entity-list-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @required='']"),
             "text_select": (By.XPATH, ".//input[starts-with(@id, 'single-line-text-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-') and @type='text']"),
-            "input_select": (By.XPATH, ".//fieldset[@id='radio-button-form-component-formElement-urn-li-jobs-applyformcommon-easyApplyFormElement-4023480854-6612340514-multipleChoice']//input[@data-test-text-selectable-option__input]"),
+            "input_select": (By.CSS_SELECTOR, 'input[type="radio"], input[type="checkbox"]'),
+            "text_area": (By.TAG_NAME, "textarea"),
             "2fa_oneClick": (By.ID, 'reset-password-submit-button'),
             "easy_apply_button": (By.XPATH, '//button[contains(@class, "jobs-apply-button")]'),
+            "date_posted_button": (By.XPATH, '//button[contains(@id, "searchFilter_timePostedRange")]'),
+            "date_posted_expanded": (By.XPATH, '//button[contains(@id, "searchFilter_timePostedRange")]'),
+
         }
 
 
@@ -266,9 +270,12 @@ class EasyApplyBot:
                 self.load_page(sleep=0.5)
 
                 if self.is_present(self.locator["search"]):
+                    
+
+
                     scrollresults = self.get_elements("search")
 
-                    for i in range(300, 8000, 100):
+                    for i in range(300, 7000, 100):
                         self.browser.execute_script("arguments[0].scrollTo(0, {})".format(i), scrollresults[0])
                         time.sleep(0.5)  # Wait for new elements to load
 
@@ -315,7 +322,7 @@ class EasyApplyBot:
                     log.info(f"Applied to {jobID}")
                 else:
                     log.info(f"Failed to apply to {jobID}")
-                jobIDs[jobID] == applied
+                del jobIDs[jobID]
 
     def apply_to_job(self, jobID):
         # #self.avoid_lock() # annoying
@@ -570,6 +577,12 @@ class EasyApplyBot:
                         button = self.wait.until(EC.element_to_be_clickable(element))
                         button.click()
 
+                elif len(self.get_elements("next")) > 0:
+                    elements = self.get_elements("next")
+                    for element in elements:
+                        button = self.wait.until(EC.element_to_be_clickable(element))
+                        button.click()
+
                 elif len(self.get_elements("review")) > 0:
                     elements = self.get_elements("review")
                     for element in elements:
@@ -726,7 +739,7 @@ class EasyApplyBot:
 
                         options = select_element.find_elements(By.TAG_NAME, "option")
                         for option in options:
-                            if option.text.strip().lower() == answer.lower():
+                            if answer.lower() in option.text.strip().lower():
                                 option.click()
                                 foundChoice = True
                                 log.info(f"Option selected: {option.text}")
@@ -759,6 +772,19 @@ class EasyApplyBot:
                     text_field.send_keys(answer)
                     log.info(f"Text input field populated with: {answer}")
                 except Exception as e:
+                    log.error(f"(process_questions(1)) Text field error: {e}") 
+            # Hanlde textarea fields
+            elif self.is_found_field(self.locator["text_area"], field):
+                try:
+                    text_area = WebDriverWait(field, 10).until(
+                            EC.presence_of_element_located(self.locator["text_area"])
+                        )
+                    time.sleep(3)
+                    text_area.clear()
+                    time.sleep(0.5)
+                    text_area.send_keys(answer)
+                    log.info(f"Text input field populated with: {answer}")
+                except Exception as e:
                     log.error(f"(process_questions(1)) Text field error: {e}")
 
             # Handle fieldset fields
@@ -773,7 +799,7 @@ class EasyApplyBot:
                     selected = False
 
                     for select_element in select_elements:
-                        if select_element.get_attribute('value').lower() == answer.lower():
+                        if answer.lower() in select_element.get_attribute('data-test-text-selectable-option__input').lower():
                             WebDriverWait(field, 10).until(EC.element_to_be_clickable(select_element))
                             self.browser.execute_script("""arguments[0].selected = true;""", select_element)
                             log.info(f"Select element chosen: {select_element.get_attribute('value')}")
@@ -794,8 +820,8 @@ class EasyApplyBot:
                             self.browser.execute_script("""arguments[0].selected = true;""", closest_match)
                             log.info(f"Closest select element chosen: {closest_match.get_attribute('value')}")
                         else:
-                            log.warning("No suitable select option found. Picking first option")
-                            firstOption = select_elements[0]
+                            log.warning("No suitable select option found. Picking 2nd option")
+                            firstOption = select_elements[1]
                             WebDriverWait(field, 10).until(EC.element_to_be_clickable(firstOption))
                             self.browser.execute_script("""arguments[0].selected = true;""", firstOption)
                             
@@ -825,7 +851,7 @@ class EasyApplyBot:
                 answer = "Native"
 
         # Experience-related questions
-        elif "how many" in question and "experience" in question:
+        elif "how many" in question and ("experience" in question or "years" in question):
             answer = random.choice(choices)
         elif "do you" in question and "experience" in question:
             answer = "Yes"

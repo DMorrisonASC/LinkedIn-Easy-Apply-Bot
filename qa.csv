@@ -3420,3 +3420,147 @@ required
        yes
        no
    please enter a valid answer",Yes
+"how many years of work experience do you have with data modeling?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with azure data factory?
+enter a whole number between 0 and 99",6
+".
+please enter a valid answer",4
+"what about your current and past work experience make you a great fit for our role?
+please enter a valid answer",4
+"do you have experience using snowflake, databricks or similar technologies?
+do you have experience using snowflake, databricks or similar technologies?
+required
+yes
+no
+please make a selection",Yes
+"please specify the number of years you have using snowflake, databricks or similar technologies along with a brief overview?
+please enter a valid answer",4
+what about your current and past work experience make you a great fit for our role?,4
+"do you have experience using snowflake, databricks or similar technologies?
+do you have experience using snowflake, databricks or similar technologies?
+required
+yes
+no",Yes
+"please specify the number of years you have using snowflake, databricks or similar technologies along with a brief overview?",4
+"are you willing to take a drug test, in accordance with local law/regulations?
+are you willing to take a drug test, in accordance with local law/regulations?
+required
+yes
+no
+please make a selection",4
+"how many years of work experience do you have with cassandra?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with devops?,6
+"how many years of work experience do you have with databricks products?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with langchain?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with swift (programming language)?,3
+"do you have a deep technical understanding of os-specific api's and demonstrated experience working end-to-end?
+do you have a deep technical understanding of os-specific api's and demonstrated experience working end-to-end?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years do you have working in a startup?
+enter a decimal number larger than 0.0",Yes
+"how many years of web development do you have?
+enter a decimal number larger than 0.0",Yes
+"gender - gender, race and ethnicity (definitions)
+gender - gender, race and ethnicity
+required
+       select an option
+       male
+       female
+       prefer not to answer",N/A
+"race/ethnicity - gender, race and ethnicity (definitions)
+race/ethnicity - gender, race and ethnicity
+required
+       select an option
+       american indian or alaska native
+       asian
+       black or african american
+       hispanic or latino
+       native hawaiian or other pacific islander
+       white
+       two or more races
+       prefer not to answer",N/A
+"are you us citizen?
+are you us citizen?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"have you had an experience with atak? please hit 'no' if none because we need someone who has experience with java development with atak. thank you!
+have you had an experience with atak? please hit 'no' if none because we need someone who has experience with java development with atak. thank you!
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of salesforce architecture experience do you have?
+enter a decimal number larger than 0.0",4
+"do you have experience integrating salesforce with emr's?
+do you have experience integrating salesforce with emr's?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"if so, how many years of emr experience do you have?
+enter a decimal number larger than 0.0",5
+"how many years of experience do you have with salesforce in a healthcare setting?
+enter a decimal number larger than 0.0",4
+"are you salesforce certified?
+are you salesforce certified?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+,4
+"i understand this is a unpaid position for 12 weeks but could turn into a paid role depending on my performance
+i understand this is a unpaid position for 12 weeks but could turn into a paid role depending on my performance
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"i am hardcore - all in type
+i am hardcore - all in type
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"i need opt/cpt
+i need opt/cpt
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+how many years of customer service experience do you currently have?,5
+"are you able to travel to las vegas nevada up to 6 times a year?
+are you able to travel to las vegas nevada up to 6 times a year?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with microservices?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with robohelp?
+enter a whole number between 0 and 99",4
+"are you available for relocation across usa? as the training location will be atlanta, georgia and project location will be anywhere in us. 
+are you available for relocation across usa? as the training location will be atlanta, georgia and project location will be anywhere in us.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with .net core?
+enter a whole number between 0 and 99",5
