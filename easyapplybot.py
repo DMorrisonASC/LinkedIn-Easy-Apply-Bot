@@ -196,10 +196,11 @@ class EasyApplyBot:
             
             # Wait for the login button to be present before interacting with it
             WebDriverWait(self.browser, 10).until(
-                EC.presence_of_element_located((By.XPATH, '//*[@id="organic-div"]/form/div[3]/button'))
+                EC.presence_of_element_located((By.XPATH, "//button[normalize-space(text())='Sign in']"))
             )
 
-            login_button = self.browser.find_element("xpath", '//*[@id="organic-div"]/form/div[3]/button')
+            login_button = self.browser.find_element("xpath", "//button[normalize-space(text())='Sign in']"
+)
             
             user_field.send_keys(username)
             time.sleep(0.5)
@@ -256,14 +257,15 @@ class EasyApplyBot:
         log.info("Set and maximize window")
 
         while time.time() - start_time < self.MAX_SEARCH_TIME:
+            # time.sleep(8)
             try:
                 log.info(f"{(self.MAX_SEARCH_TIME - (time.time() - start_time)) // 60} minutes left in this search")
 
-                # Check for human verification
-                if self.is_present(self.locator["human_verification"]):  # Make sure to define this locator
-                    log.warning("Human verification detected. Please complete the verification.")
-                    while self.is_present(self.locator["human_verification"]):
-                        time.sleep(10)  # Pause and wait until the user completes verification
+                # # Check for human verification
+                # if self.is_present(self.locator["human_verification"]):  # Make sure to define this locator
+                #     log.warning("Human verification detected. Please complete the verification.")
+                #     while self.is_present(self.locator["human_verification"]):
+                #         time.sleep(10)  # Pause and wait until the user completes verification
 
                 randoTime: float = random.uniform(1.5, 2.9)
                 log.debug(f"Sleeping for {round(randoTime, 1)}")
@@ -271,11 +273,9 @@ class EasyApplyBot:
 
                 if self.is_present(self.locator["search"]):
                     
-
-
                     scrollresults = self.get_elements("search")
 
-                    for i in range(300, 7000, 100):
+                    for i in range(300, 5000, 100):
                         self.browser.execute_script("arguments[0].scrollTo(0, {})".format(i), scrollresults[0])
                         time.sleep(0.5)  # Wait for new elements to load
 
@@ -301,7 +301,10 @@ class EasyApplyBot:
                                     log.debug("Job ID not found, search keyword found instead? {}".format(link.text))
                                     continue
                                 else:
-                                    jobIDs[jobID] = "To be processed"
+                                    # If "Applied" status somehow passes, check if `JobID` is already in dict
+                                    # Ensure that don't get 
+                                    if jobID not in jobIDs:
+                                        jobIDs[jobID] = "To be processed"
                     
                     if len(jobIDs) > 0:
                         self.apply_loop(jobIDs)
@@ -433,24 +436,6 @@ class EasyApplyBot:
         return EasyApplyButton
 
     def fill_out_fields(self):
-        try:
-            # Locate the modal container with aria-labelledby="header"
-            modal_container = WebDriverWait(self.browser, 6).until(
-                EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'artdeco-modal--layer-default') and @aria-labelledby='header']"))
-            )
-
-            log.info("Modal is present.")
-
-            # Now locate the continue button within the modal
-            continue_btn = WebDriverWait(self.browser, 10).until(
-                EC.presence_of_element_located(self.locator["continue_applying"])
-            )
-            continue_btn.click()
-
-            log.info("Clicked 'Continue' inside the modal.")
-                
-        except Exception as e:
-            log.error(f"Couldn't continue or button never appeared. Error: {e}")
 
         fields = self.browser.find_elements(By.CLASS_NAME, "jobs-easy-apply-form-section__grouping")
         for field in fields:
@@ -512,6 +497,7 @@ class EasyApplyBot:
             loop = 0
 
             while loop < 2:
+                print("Entered")
                 time.sleep(2)
                 # Upload resume
                 if is_present(upload_resume_locator):
@@ -577,8 +563,8 @@ class EasyApplyBot:
                         button = self.wait.until(EC.element_to_be_clickable(element))
                         button.click()
 
-                elif len(self.get_elements("next")) > 0:
-                    elements = self.get_elements("next")
+                elif len(self.get_elements("continue_applying")) > 0:
+                    elements = self.get_elements("continue_applying")
                     for element in elements:
                         button = self.wait.until(EC.element_to_be_clickable(element))
                         button.click()

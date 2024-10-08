@@ -3662,3 +3662,40 @@ required
        yes
        no
    please enter a valid answer",4
+"how many years of work experience do you have with user acceptance testing?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with clinical systems implementation?
+enter a whole number between 0 and 99",6
+"do you have experience with interactive response technology (irt) / randomization and trial supply management (rtsm)?
+do you have experience with interactive response technology (irt) / randomization and trial supply management (rtsm)?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you consent to being contacted about this job via text/sms?
+do you consent to being contacted about this job via text/sms?
+required
+yes
+no
+please make a selection",Yes
+"do you consent to being contacted about this job via text/sms?
+do you consent to being contacted about this job via text/sms?
+required
+yes
+no",Yes
+"how many years of work experience do you have with manual testing?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with sauce labs?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with cypress?
+enter a whole number between 0 and 99",6
+how many years of work experience do you have with artificial intelligence (ai)?,3
+"this position is on zuplon’s w2. are you comfortable? 
+this position is on zuplon’s w2. are you comfortable?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with tableau?,4
