@@ -3701,3 +3701,59 @@ required
 how many years of work experience do you have with tableau?,4
 "how many years of work experience do you have with american registry for diagnostic medical sonography (ardms)?
 enter a whole number between 0 and 99",5
+"do you have experience with
+do you have experience with
+required
+sql
+python
+powershell
+etl processing
+please make a selection",Yes
+"elaborate on your etl experience
+please enter a valid answer",4
+elaborate on your etl experience,4
+"do you have experience with
+do you have experience with
+required
+sql
+python
+powershell
+etl processing",Yes
+"are you legally authorized to work in the united states?
+are you legally authorized to work in the united states?
+required
+yes
+no
+please make a selection",4
+"will you now or in the future require sponsorship for employment (h1b, visa, opt, etc)?
+will you now or in the future require sponsorship for employment (h1b, visa, opt, etc)?
+required
+yes
+no
+please make a selection",No
+"linkedin
+please enter a valid answer",4
+"this is a hybrid position and you will be expected to be on-site in manhattan, ny for 3-4 days a week. is that acceptable to you?
+this is a hybrid position and you will be expected to be on-site in manhattan, ny for 3-4 days a week. is that acceptable to you?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"in case we move forward with your application, do we have your permission to record our pre-screen video interview and forward to our client for review?
+in case we move forward with your application, do we have your permission to record our pre-screen video interview and forward to our client for review?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with selenium?,3
+"can you work direct, and onsite 3 days in nj? 
+can you work direct, and onsite 3 days in nj?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of work experience do you have with google kubernetes engine (gke)?
+enter a whole number between 0 and 99",4

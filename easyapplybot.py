@@ -110,7 +110,7 @@ class EasyApplyBot:
 
         self.locator = {
             "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
-            "continue_applying": (By.XPATH, "//button[.//span[contains(text(), 'Continue applying')]]"),
+            "continue_applying": (By.XPATH, "//button[contains(span/text(), 'Continue a')]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -790,7 +790,7 @@ class EasyApplyBot:
                     for select_element in select_elements:
                         if answer.lower() in select_element.get_attribute('data-test-text-selectable-option__input').lower():
                             WebDriverWait(field, 10).until(EC.element_to_be_clickable(select_element))
-                            self.browser.execute_script("""arguments[0].selected = true;""", select_element)
+                            select_element.click()  # Click instead of just setting the 'selected' attribute
                             log.info(f"Select element chosen: {select_element.get_attribute('value')}")
                             selected = True
                             break  # Exit loop once the option is selected
@@ -806,14 +806,20 @@ class EasyApplyBot:
 
                         if closest_match:
                             WebDriverWait(field, 10).until(EC.element_to_be_clickable(closest_match))
-                            self.browser.execute_script("""arguments[0].selected = true;""", closest_match)
+                            closest_match.click()  # Use click for better simulation
                             log.info(f"Closest select element chosen: {closest_match.get_attribute('value')}")
                         else:
-                            log.warning("No suitable select option found. Picking 2nd option")
-                            firstOption = select_elements[1]
-                            WebDriverWait(field, 10).until(EC.element_to_be_clickable(firstOption))
-                            self.browser.execute_script("""arguments[0].selected = true;""", firstOption)
+                            log.warning("No suitable select option found. Picking the 2nd option")
                             
+                            if len(select_elements) > 1:  # Ensure there is a 2nd option
+                                second_option = select_elements[1]
+                                WebDriverWait(field, 10).until(EC.element_to_be_clickable(second_option))
+
+                                second_option.click()  # Try to click instead of setting selected directly
+                                log.info(f"Second option selected: {second_option.get_attribute('value')}")
+                            else:
+                                log.error("Less than 2 options are available; unable to pick the 2nd option.")
+                                
                 except StaleElementReferenceException:
                     log.warning(f"Retrying due to stale element.")
 
