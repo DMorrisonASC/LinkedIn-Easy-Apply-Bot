@@ -56,7 +56,7 @@ def setupLogger() -> None:
 class EasyApplyBot:
     setupLogger()
     # MAX_SEARCH_TIME is 10 hours by default, feel free to modify it
-    MAX_SEARCH_TIME = 60 * 30
+    MAX_SEARCH_TIME = 60 * 20
 
     def __init__(self,
                  username,
@@ -812,9 +812,9 @@ class EasyApplyBot:
                         else:
                             log.warning("No suitable select option found. Picking the 2nd option")
                             
-                            if len(select_elements) > 1:  # Ensure there is a 2nd option
+                            if len(select_elements) > 0:  # Ensure there is a 2nd option
                                 second_option = select_elements[1]
-                                WebDriverWait(field, 10).until(EC.element_to_be_clickable(second_option))
+                                WebDriverWait(field, 20).until(EC.element_to_be_clickable(second_option))
 
                                 second_option.click()  # Try to click instead of setting selected directly
                                 log.info(f"Second option selected: {second_option.get_attribute('value')}")
@@ -874,8 +874,8 @@ class EasyApplyBot:
             answer = "Yes"
         # 
         elif ("city" in question or "address" in question):
-            answer = "Bronx"
-        elif ("zip code" in question or "area code" in question):
+            answer = "Bronx, New York, United States"
+        elif ("zip" in question or "area code" in question or "postal" in question):
             answer = "10466"
         elif ("first" in question):
             answer = "Daeshaun"

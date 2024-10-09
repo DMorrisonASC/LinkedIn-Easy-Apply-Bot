@@ -4050,3 +4050,202 @@ u.s. time zone?
 required
 yes
 no",4
+how many years of work experience do you have with salesforce.com?,5
+"how many years of work experience do you have with salesforce cpq?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with adobe experience manager (aem)?,6
+"how many years of work experience do you have with osgi?
+enter a whole number between 0 and 99",4
+"do you have strong expertise in gohighlevel, including its features, capabilities, and integration options?
+do you have strong expertise in gohighlevel, including its features, capabilities, and integration options?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of relevant experience do you have according to the job description?
+enter a decimal number larger than 0.0",5
+"how many years of work experience do you have with agile web development?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with javascript frameworks?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with appdynamics?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with quantum computing?
+enter a whole number between 0 and 99",3
+"have you graduated from one of the top 25 computer science universities?
+have you graduated from one of the top 25 computer science universities?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"can you confidently code using python?
+can you confidently code using python?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of work experience do you have with github?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with tibco?,5
+"how many years of work experience do you have with postman api?
+enter a whole number between 0 and 99",6
+"how many years of experience do you have with mulesoft development ?
+enter a decimal number larger than 0.0",5
+"are you local to georgia ?
+are you local to georgia ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you an us citizen or green card holder ?
+are you an us citizen or green card holder ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you comfortable to work on w2 contract ?
+are you comfortable to work on w2 contract ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you comfortable to work on w2 without any sponsorship?
+are you comfortable to work on w2 without any sponsorship?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"are you comfortable with c2h role?
+are you comfortable with c2h role?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"this role only open for usc, please only apply if you are a usa citizen.
+this role only open for usc, please only apply if you are a usa citizen.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"do you feel comfortable in your ability to excel on a ""tough"" sql based online coding test? 
+do you feel comfortable in your ability to excel on a ""tough"" sql based online coding test?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of full stack, production (post-graduate) development work experience do you have?
+enter a decimal number larger than 0.0",3
+"do you feel comfortable in your ability to excel on a ""challenging"" react based online coding test? 
+do you feel comfortable in your ability to excel on a ""challenging"" react based online coding test?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you feel comfortable in your ability to excel on a ""challenging"" php based online coding test? 
+do you feel comfortable in your ability to excel on a ""challenging"" php based online coding test?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"required
+       select an option
+       yes, i submitted the form to give augment jobs my job preferences.
+       no, i did not submit the form and do not want support in my job search
+   please make a selection",N/A
+"will you now or in the future require sponsorship for employment (h1b, visa, opt, etc)?
+will you now or in the future require sponsorship for employment (h1b, visa, opt, etc)?
+required
+yes
+no",No
+"do you have experience in developer relations or technical advocacy within defi? 
+do you have experience in developer relations or technical advocacy within defi?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you familiar with layer-2 scaling solutions and cross-chain interoperability within the blockchain space?
+are you familiar with layer-2 scaling solutions and cross-chain interoperability within the blockchain space?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with dialogflow?
+enter a whole number between 0 and 99",3
+"how many years of expertise with infrastructure-as-code automation(iac) of aws with cloudformation, cdk, terraform or other tools?
+how many years of expertise with infrastructure-as-code automation(iac) of aws with cloudformation, cdk, terraform or other tools?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",5
+"are you looking for corp-to-corp work?
+are you looking for corp-to-corp work?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"city
+city",Bronx
+"city
+city
+bronx, new york, united states
+bronx county, new york, united states
+10467, bronx, new york, united states
+10459, bronx, new york, united states
+10462, bronx, new york, united states
+10456, bronx, new york, united states
+10458, bronx, new york, united states
+10466, bronx, new york, united states
+10452, bronx, new york, united states
+10463, bronx, new york, united states
+10453, bronx, new york, united states
+10469, bronx, new york, united states
+10468, bronx, new york, united states
+10451, bronx, new york, united states
+10457, bronx, new york, united states
+10473, bronx, new york, united states
+10461, bronx, new york, united states
+10472, bronx, new york, united states
+10460, bronx, new york, united states
+10475, bronx, new york, united states
+please enter a valid answer",Bronx
+"what's your citizenship / employment eligibility?
+what's your citizenship / employment eligibility?
+required
+u.s. citizen/permanent resident
+non-citizen allowed to work for any employer
+non-citizen allowed to work for current employer
+non-citizen seeking work authorization
+canadian citizen/permanent resident
+other",4
+"how many years of work experience do you have with federal & state regulatory compliance?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with otc markets?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with shopify plus?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with responsive web design?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with api management?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with smartsheet?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with financial accounting?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with cognos reportnet?
+enter a whole number between 0 and 99",4
