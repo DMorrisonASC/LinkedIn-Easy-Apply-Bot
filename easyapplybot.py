@@ -872,6 +872,7 @@ class EasyApplyBot:
             answer = "Yes"
         elif ("US" in question or "U.S." in question or "green" in question ) and ("citizen" in question or "card" in question):
             answer = "Yes"
+        # 
         elif ("city" in question or "address" in question):
             answer = "Bronx"
         elif ("zip code" in question or "area code" in question):
@@ -880,6 +881,11 @@ class EasyApplyBot:
             answer = "Daeshaun"
         elif ("last" in question):
             answer = "Morrison"
+        # Socials
+        elif ("github" in question):
+            answer = "https://github.com/DMorrisonASC"
+        elif ("linkedin" in question):
+            answer = "https://www.linkedin.com/in/daeshaun-morrison-bab77b176/"
 
         # Disability and drug test-related questions
         elif "do you" in question and "disability" in question:

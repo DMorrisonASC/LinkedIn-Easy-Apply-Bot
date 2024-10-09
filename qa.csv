@@ -3994,3 +3994,59 @@ enter a whole number between 0 and 99",3
 enter a whole number between 0 and 99",4
 "how many years of work experience do you have with postgresql?
 enter a whole number between 0 and 99",5
+"github url
+please enter a valid answer",4
+"linkedin url
+please enter a valid answer",4
+"u.s. time zone?
+u.s. time zone?
+required
+yes
+no
+please make a selection",4
+"experience developing many production applications using typescript / javascript
+experience developing many production applications using typescript / javascript
+required
+yes
+no
+please make a selection",4
+"deep knowledge of web technologies eg typescript, wasm, vue/react
+deep knowledge of web technologies eg typescript, wasm, vue/react
+required
+yes
+no
+please make a selection",4
+"some experience managing cloud provider infrastructure for large userbases
+some experience managing cloud provider infrastructure for large userbases
+required
+yes
+no
+please make a selection",4
+"experience or interest in game development
+experience or interest in game development
+required
+yes
+no
+please make a selection",4
+github url,4
+linkedin url,4
+"deep knowledge of web technologies eg typescript, wasm, vue/react
+deep knowledge of web technologies eg typescript, wasm, vue/react
+required
+yes
+no",4
+"some experience managing cloud provider infrastructure for large userbases
+some experience managing cloud provider infrastructure for large userbases
+required
+yes
+no",4
+"experience or interest in game development
+experience or interest in game development
+required
+yes
+no",4
+"u.s. time zone?
+u.s. time zone?
+required
+yes
+no",4
