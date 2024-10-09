@@ -290,8 +290,11 @@ class EasyApplyBot:
                             # Look for the "Applied" status within the footer section of the job card
                             applied_status = link.find_element(By.XPATH, ".//div/ul/li[contains(@class, 'job-card-container__footer-job-state') and normalize-space(.)='Applied']")
 
+                            # Get rid of jobs that have been already applied
                             if applied_status.is_displayed():
                                 log.debug("Job already applied: {}".format(link.text))
+                                dismissBtn = link.find_element(By.XPATH, ".//button[starts-with(@aria-label, 'Dismiss')]")
+                                dismissBtn.click()
                                 continue  # Skip this job card if it's already applied
 
                         except NoSuchElementException:
