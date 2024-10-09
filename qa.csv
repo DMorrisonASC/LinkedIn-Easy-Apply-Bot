@@ -3757,3 +3757,240 @@ required
    please enter a valid answer",4
 "how many years of work experience do you have with google kubernetes engine (gke)?
 enter a whole number between 0 and 99",4
+"have you completed the following level of education: master's degree?
+have you completed the following level of education: master's degree?
+required
+yes
+no",Yes
+"are you open to work 8am to 4pm cdt?
+are you open to work 8am to 4pm cdt?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of experience do you have with devops engineering?
+enter a decimal number larger than 0.0",3
+"to work on our w2/payroll, do you need visa sponsorship, now or in the future? we do not provide visa sponsorship.
+to work on our w2/payroll, do you need visa sponsorship, now or in the future? we do not provide visa sponsorship.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"what is your expected hourly pay on w2 basis? (you will work with us as a direct employee, not c2c /1099)
+enter a decimal number larger than 0.0",4
+"how many years of experience you have working with large language models (llms)?
+enter a decimal number larger than 0.0",6
+"how many years of work experience do you have with machine learning frameworks: pytorch, huggingface?
+enter a decimal number larger than 0.0",4
+"how many years of work experience do you have with amazon web services (aws)?
+enter a decimal number larger than 0.0",4
+"how many years of experience do you have working with retrieval-augmented generation (rag) workflows?
+enter a decimal number larger than 0.0",6
+"êtes-vous actuellement à la recherche de stage ? 
+êtes-vous actuellement à la recherche de stage ?
+required
+       sélectionnez une option
+       yes
+       no
+   veuillez saisir une réponse valable",4
+"accepteriez-vous de travailler à distance ?
+accepteriez-vous de travailler à distance ?
+required
+oui
+non",4
+"how many years of work experience do you have with unreal engine?
+enter a whole number between 0 and 99",3
+"how did you hear about this opening?
+how did you hear about this opening?
+required
+       select an option
+       aamd
+       glassdoor
+       indeed
+       linkedin
+       radformation website
+       referral
+       other
+   please make a selection",Other
+"will you now, or in the future, require visa sponsorship?
+will you now, or in the future, require visa sponsorship?
+required
+       select an option
+       yes
+       no
+   please make a selection",No
+"how many years of experience do you have with c#?
+how many years of experience do you have with c#?
+required
+       select an option
+       less than 1
+       1
+       2
+       3
+       4
+       5
+       6
+       7
+       8
+       9
+       10+
+   please make a selection",5
+"how many years of experience do you have with wpf?
+how many years of experience do you have with wpf?
+required
+       select an option
+       less than 1
+       1
+       2
+       3
+       4
+       5
+       6
+       7
+       8
+       9
+       10+
+   please make a selection",4
+"how many years of engineering experience in radiation therapy do you have?
+how many years of engineering experience in radiation therapy do you have?
+required
+       select an option
+       less than 1
+       1
+       2
+       3
+       4
+       5
+       6
+       7
+       8
+       9
+       10+
+   please make a selection",5
+"what is your desired compensation?
+please enter a valid answer",4
+"city
+city
+brazil
+emea
+united states
+benelux
+bangladesh
+european economic area
+european union
+schengen area
+belgium
+mena
+bengaluru, karnataka, india
+buenos aires province, argentina
+middle east
+united kingdom
+bogotá d.c. metropolitan area
+bogotá, capital district, colombia
+beijing, china
+bogota, d.c., capital district, colombia
+são paulo, brazil
+bihar, india
+please enter a valid answer",4
+"do you have experience in a startup?
+do you have experience in a startup?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have experience in a fintech and/or earn related business?
+do you have experience in a fintech and/or earn related business?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with cryptocurrency?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with crypto?
+enter a whole number between 0 and 99",5
+"do you have prototyping experience?
+do you have prototyping experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of creating resources and deploying solutions in azure do you have?
+enter a decimal number larger than 0.0",4
+"do you live within a commutable distance to bucks county, pa?
+do you live within a commutable distance to bucks county, pa?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of python in an industrial environment do you have?
+enter a decimal number larger than 0.0",6
+how many years of work experience do you have with interactive voice response (ivr)?,3
+how many years of work experience do you have with site reliability engineering?,3
+"oracle analytics cloud
+enter a decimal number larger than 0.0",4
+"warehouse
+enter a decimal number larger than 0.0",4
+"how many years of work experience do you have with nutanix?
+enter a whole number between 0 and 99",5
+"do you have work experience with powershell scripting ?
+do you have work experience with powershell scripting ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with ubuntu?,5
+"how many years of work experience do you have with apache?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with pharmaceutical companies?
+enter a whole number between 0 and 99",6
+"do you have the following license or certification: fire alarm?
+do you have the following license or certification: fire alarm?
+required
+yes
+no
+please make a selection",Yes
+how many years of work experience do you have with communication?,3
+"do you have the following license or certification: fire alarm?
+do you have the following license or certification: fire alarm?
+required
+yes
+no",Yes
+"how many years of work experience do you have with biological databases?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with database administration?,5
+"how many years of work experience do you have with qt library?
+enter a decimal number larger than 0.0",5
+"do you currently live in the united states?
+do you currently live in the united states?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"will you now, or in the future, require sponsorship for employment visa status?
+will you now, or in the future, require sponsorship for employment visa status?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"are you available for relocation across usa? as the training location will be atlanta, georgia for 8 weeks and project location will be anywhere in us.
+are you available for relocation across usa? as the training location will be atlanta, georgia for 8 weeks and project location will be anywhere in us.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with django?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with graphql?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with postgresql?
+enter a whole number between 0 and 99",5

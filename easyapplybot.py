@@ -56,7 +56,7 @@ def setupLogger() -> None:
 class EasyApplyBot:
     setupLogger()
     # MAX_SEARCH_TIME is 10 hours by default, feel free to modify it
-    MAX_SEARCH_TIME = 60 * 60
+    MAX_SEARCH_TIME = 60 * 30
 
     def __init__(self,
                  username,
@@ -110,7 +110,7 @@ class EasyApplyBot:
 
         self.locator = {
             "human_verification" : (By.XPATH, "//h1[text()=\"Let’s do a quick security check\"]"),
-            "continue_applying": (By.XPATH, "//button[contains(span/text(), 'Continue a')]"),
+            "continue_applying": (By.XPATH, ".//button[contains(., 'Continue applying')]"),
             "next": (By.CSS_SELECTOR, "button[aria-label='Continue to next step']"),
             "review": (By.CSS_SELECTOR, "button[aria-label='Review your application']"),
             "submit": (By.CSS_SELECTOR, "button[aria-label='Submit application']"),
@@ -328,7 +328,7 @@ class EasyApplyBot:
                     log.info(f"Applied to {jobID}")
                 else:
                     log.info(f"Failed to apply to {jobID}")
-                del jobIDs[jobID]
+                jobIDs[jobID] = applied
 
     def apply_to_job(self, jobID):
         # #self.avoid_lock() # annoying
@@ -570,6 +570,7 @@ class EasyApplyBot:
                     elements = self.get_elements("continue_applying")
                     for element in elements:
                         button = self.wait.until(EC.element_to_be_clickable(element))
+                        log.info(button.text + "Here!")
                         button.click()
 
                 elif len(self.get_elements("review")) > 0:
@@ -871,6 +872,14 @@ class EasyApplyBot:
             answer = "Yes"
         elif ("US" in question or "U.S." in question or "green" in question ) and ("citizen" in question or "card" in question):
             answer = "Yes"
+        elif ("city" in question or "address" in question):
+            answer = "Bronx"
+        elif ("zip code" in question or "area code" in question):
+            answer = "10466"
+        elif ("first" in question):
+            answer = "Daeshaun"
+        elif ("last" in question):
+            answer = "Morrison"
 
         # Disability and drug test-related questions
         elif "do you" in question and "disability" in question:
