@@ -4249,3 +4249,280 @@ enter a whole number between 0 and 99",5
 enter a whole number between 0 and 99",5
 "how many years of work experience do you have with cognos reportnet?
 enter a whole number between 0 and 99",4
+"dynamodb 4 years
+dynamodb 4 years
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"react experience 4 years
+react experience 4 years
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"core c#
+core c#
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"do you have an associate's or bachelor's degree?
+do you have an associate's or bachelor's degree?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+how many years of work experience do you have with ios development?,4
+"how many years of work experience do you have with websphere?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with pega prpc?
+enter a whole number between 0 and 99",4
+"do you have the following license or certification: certified senior system architect (cssa)?
+do you have the following license or certification: certified senior system architect (cssa)?
+required
+yes
+no
+please make a selection",Yes
+"do you have the following license or certification: certified senior system architect (cssa)?
+do you have the following license or certification: certified senior system architect (cssa)?
+required
+yes
+no",Yes
+"are you bilingual in korean and english?
+are you bilingual in korean and english?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"to work on our w2, do you need visa sponsorship, now or in the future? we do not provide visa sponsorship
+to work on our w2, do you need visa sponsorship, now or in the future? we do not provide visa sponsorship
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"how many years of work experience do you have with performing the preventative/corrective maintenance using required ppes which may include apr/scba ?
+enter a decimal number larger than 0.0",4
+"how many years of work experience do you have as lab service engineer ?
+enter a decimal number larger than 0.0",4
+"please confirm if you will be able to work 100% from the fremont office (zip code 94538)?
+please confirm if you will be able to work 100% from the fremont office (zip code 94538)?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",10466
+"how many years of work experience do you have with android jetpack?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with continuous integration and continuous delivery (ci/cd)?,5
+"do you have commercial experience working in c++17 or newer?
+do you have commercial experience working in c++17 or newer?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have commercial experience working on high performance computing (hpc) systems?
+do you have commercial experience working on high performance computing (hpc) systems?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you currently located in the us? 
+are you currently located in the us?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have commercial experience working on a fully systematic hft trading system? 
+do you have commercial experience working on a fully systematic hft trading system?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with reverse proxy?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with network security?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with load balancing?
+enter a whole number between 0 and 99",6
+"except opt/cpt visa anyone can apply for this position ?
+except opt/cpt visa anyone can apply for this position ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"are you comfortable to work on w2/fte ?
+are you comfortable to work on w2/fte ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with amazon s3?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with amazon relational database service (rds)?
+enter a whole number between 0 and 99",5
+how many years of work experience do you have with generative ai?,5
+"how many years of work experience do you have with amazon bedrock?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with skill large language models?
+enter a decimal number larger than 0.0",5
+"how many years of work experience do you have with rag architecture?
+enter a decimal number larger than 0.0",3
+"how many years of work experience do you have with amazon kendra?
+enter a decimal number larger than 0.0",4
+"how many years of work experience do you have with opensearch?
+enter a decimal number larger than 0.0",5
+"do you have experience with architecting solutions on aws platforms ?
+do you have experience with architecting solutions on aws platforms ?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many total years of experience do you have?
+enter a decimal number larger than 0.0",5
+how many years of work experience do you have with microsoft access?,4
+"no. of years experience in cyberarc
+enter a decimal number larger than 0.0",4
+"how many years of work experience do you have with user stories?
+enter a whole number between 0 and 99",5
+"how many years of experince you do have with health cloud
+enter a decimal number larger than 0.0",3
+"how many years of work experience do you have with alteryx?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with it integration?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with accounts payable (ap)?
+enter a whole number between 0 and 99",6
+"how many years of capital markets experience do you currently have?
+enter a whole number between 0 and 99",4
+"how many years of project management experience do you currently have?
+enter a whole number between 0 and 99",5
+"how many years of banking experience do you currently have?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with teamcenter?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with jira?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with camunda?
+enter a decimal number larger than 0.0",4
+"how many total year of abinitio experience?
+enter a decimal number larger than 0.0",3
+"are you open to work on w2?
+are you open to work on w2?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"are you open to work in nj? day 1 relocation is must.
+are you open to work in nj? day 1 relocation is must.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have 3+ years of overall development experience with a focus on web application development?
+do you have 3+ years of overall development experience with a focus on web application development?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have strong c# .net, python, or java development experience?
+do you have strong c# .net, python, or java development experience?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"do you have knowledge of appian development, ui design, defining custom data types, and process design?
+do you have knowledge of appian development, ui design, defining custom data types, and process design?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"must have epic interface bridge certification (active) 
+must have epic interface bridge certification (active)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+how many years of hospitals and health care experience do you currently have?,4
+"must have hands on experience with integration engines (iguana) 
+must have hands on experience with integration engines (iguana)
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"how many years of experience do you have as a business analyst?
+enter a decimal number larger than 0.0",3
+how many years of work experience do you have with cascading style sheets (css)?,6
+"how many years of work experience do you have with bootstrap (framework)?
+enter a whole number between 0 and 99",4
+"stencil.js experience
+stencil.js experience
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"figma experience
+figma experience
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",4
+"are you able to work directly with me on my w2 and must be eligible to work in the us without company sponsorship now or in the future.
+are you able to work directly with me on my w2 and must be eligible to work in the us without company sponsorship now or in the future.
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",No
+"how many years of work experience do you have working with agile
+enter a decimal number larger than 0.0",3
+"how many years of work experience do you have with sap products?
+enter a whole number between 0 and 99",3
+how many years of work experience do you have with apache?,3
+"how many years of work experience do you have with revit?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with bim coordination?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with bim modelling?
+enter a whole number between 0 and 99",3
+"do you know have experience with leading electrical pre-construction bim projects?
+do you know have experience with leading electrical pre-construction bim projects?
+required
+       select an option
+       yes
+       no
+   please enter a valid answer",Yes
+"how many years of work experience do you have with automated software testing?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with javascript?
+enter a whole number between 0 and 99",5
+"how many years of work experience do you have with amazon web services (aws)?
+enter a whole number between 0 and 99",6
+"how many years of work experience do you have with micro focus quality center?
+enter a whole number between 0 and 99",4
+"how many years of work experience do you have with azure devops server?
+enter a whole number between 0 and 99",3
+"how many years of work experience do you have with relational databases?
+enter a whole number between 0 and 99",3

@@ -76,6 +76,7 @@ class EasyApplyBot:
         dirpath: str = os.getcwd()
         log.info("current directory is : " + dirpath)
         log.info("Please wait while we prepare the bot for you")
+
         if experience_level:
             experience_levels = {
                 1: "Entry level",
@@ -85,6 +86,7 @@ class EasyApplyBot:
                 5: "Executive",
                 6: "Internship"
             }
+
             applied_levels = [experience_levels[level] for level in experience_level]
             log.info("Applying for experience level roles: " + ", ".join(applied_levels))
         else:
@@ -94,7 +96,6 @@ class EasyApplyBot:
         self.uploads = uploads
         self.salary = salary
         self.rate = rate
-        # self.profile_path = profile_path
         past_ids: list | None = self.get_appliedIDs(filename)
         self.appliedJobIDs: list = past_ids if past_ids != None else []
         self.filename: str = filename
@@ -199,8 +200,7 @@ class EasyApplyBot:
                 EC.presence_of_element_located((By.XPATH, "//button[normalize-space(text())='Sign in']"))
             )
 
-            login_button = self.browser.find_element("xpath", "//button[normalize-space(text())='Sign in']"
-)
+            login_button = self.browser.find_element("xpath", "//button[normalize-space(text())='Sign in']")
             
             user_field.send_keys(username)
             time.sleep(0.5)
@@ -911,6 +911,8 @@ class EasyApplyBot:
             answer = "Yes"
         elif "salary" in question:
             answer = self.salary
+        elif "hourly" in question:
+            answer = "40"
         elif "gender" in question:
             answer = "Male"
         elif "race" in question:
@@ -1002,15 +1004,15 @@ class EasyApplyBot:
 
 
 if __name__ == '__main__':
-
+    # all user info needed for the applying. Ex: username, password, 
     with open("config.yaml", 'r') as stream:
         try:
             parameters = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             raise exc
-
-    assert len(parameters['positions']) > 0
-    assert len(parameters['locations']) > 0
+    # Ensure required parameters are present
+    assert len(parameters['positions']) > 0, "There are no positions to be searched. Check `config.yaml"
+    assert len(parameters['locations']) > 0, "There are no locations to be searched. Check `config.yaml"
     assert parameters['username'] is not None
     assert parameters['password'] is not None
     assert parameters['phone_number'] is not None
